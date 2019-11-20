@@ -1,0 +1,42 @@
+.dropdown_menu {
+  background-color: whitesmoke;
+  padding: 0 30px;
+}
+
+.menu_items {
+  padding: 0 0 0 50px;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.menu_items ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu_items a {
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown_menu label {
+  font-family: "Impact", fantasy;
+  font-size: 50px;
+  display: block;
+  cursor: pointer;
+  background: url(../../images/menuIcon.png) no-repeat left center;
+  background-size: 3%;
+  padding-left: 60px;
+}
+
+input#menu {
+  display: none;
+}
+
+input:checked + label {
+  background-image: url(../../images/menuCloseIcon.png);
+}
+
+input:checked ~ .menu_items {
+  max-height: 100%;
+}
