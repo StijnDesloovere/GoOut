@@ -1,9 +1,9 @@
 import React from "react";
-import MenuBar from "../components/Menu/Menu";
+import LoginWindow from "../components/Login/Login";
 
 const Home = () => (
   <div>
-    <MenuBar />
+    <LoginWindow />
   </div>
 );
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Menu.css";
 
-const MenuBar = props => (
+const MenuBar = () => (
   <header className="menu">
     <div className="dropdown_menu">
       <input type="checkbox" id="menu" />

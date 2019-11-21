@@ -8,10 +8,11 @@ import {
 } from "react-router-dom";
 
 //pages
-import Home from "./pages/HomePage";
+import Home from "./pages/HomePage.js";
 import Error404 from "./pages/ErrorPage";
-import LocationMap from "./pages/MapPage";
-import Followers from "./pages/FollowersPage";
+import LocationMap from "./pages/MapPage.js";
+import Followers from "./pages/FollowersPage.js";
+import SignUp from "./pages/SignUpPage.js";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={SignUp} />
           <Route exact path="/404" component={Error404} />
           <Route exact path="/followers" component={Followers} />
           <Route exact path="/map" component={LocationMap} />
