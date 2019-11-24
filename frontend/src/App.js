@@ -8,11 +8,11 @@ import {
 } from "react-router-dom";
 
 //pages
-import Home from "./frontend/pages/HomePage.js";
-import Error404 from "./frontend/pages/ErrorPage";
-import LocationMap from "./frontend/pages/MapPage.js";
-import Followers from "./frontend/pages/FollowersPage.js";
-import SignUp from "./frontend/pages/SignUpPage.js";
+import Home from "./pages/HomePage.js";
+import Error404 from "./pages/ErrorPage";
+import LocationMap from "./pages/MapPage.js";
+import Followers from "./pages/FollowersPage.js";
+import SignUp from "./pages/SignUpPage.js";
 
 class App extends Component {
   render() {
