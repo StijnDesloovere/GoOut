@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'GoOut.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'GoOutDB',
-        'USER': 'root',
-        'PASSWORD': 'GoOutAdmin'
+        'USER': 'postgres',
+        'PASSWORD': 'DBAdmin'
     }
 }
 
