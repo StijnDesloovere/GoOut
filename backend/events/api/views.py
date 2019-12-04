@@ -1,35 +1,12 @@
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    CreateAPIView,
-    UpdateAPIView,
-    DestroyAPIView
-)
+from rest_framework import viewsets
 
 from events.models import Event
 from .serializers import EventSerializer
 
 
-class EventListView(ListAPIView):
-    queryset = Event.objects.all()
+class EventViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing Event instances.
+    """
     serializer_class = EventSerializer
-
-
-class EventDetailView(RetrieveAPIView):
     queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-
-class EventCreateView(CreateAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-
-class EventUpdateView(UpdateAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-
-
-class EventDeleteView(DestroyAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
