@@ -10,8 +10,14 @@
   font-family: "Open Sans", sans-serif;
   font-size: 30px;
 }
-
-/* text fields */
+/*error message*/
+.errorLogin {
+  margin-top: -28px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: red;
+}
+/* text fields, code modified from: https://github.com/ipenywis/react-login-register/blob/master/src/components/login/style.scss */
 
 .inputFields {
   margin-top: 35px;
@@ -38,12 +44,13 @@
   border-radius: 4px;
   margin-bottom: 8%;
 }
+
 /* SignUp */
-.signUpRedirect {
+.signUpRedirect pre {
   font-family: "Open Sans", sans-serif;
 }
 
-/* Button */
+/* Button, code modified from: https://www.w3schools.com/css/css3_buttons.asp */
 .lButton {
   background-color: #0080ff; /* Green */
   font-family: "Open Sans", sans-serif;
@@ -56,6 +63,11 @@
   display: inline-block;
   font-size: 16px;
   margin-top: 10px;
+}
+
+.redirect {
+  color: white;
+  text-decoration: none;
 }
 
 .lButton span {

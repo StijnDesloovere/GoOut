@@ -1,27 +1,67 @@
-body {
-  padding-bottom: 50px;
+.accountPage {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* change profile picture */
+.profilePictureTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: -100px;
 }
 
-.formFields {
+.profilePictureIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.profilePictureTitleText {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.newProfilePicture {
+  margin-left: -100px;
+  margin-bottom: 30px;
+}
+
+/* settings title */
+.userSettings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.settingsIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.settingsText {
+  margin-left: 10px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+/* settings form*/
+.settingsFields {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.header {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.signUpFields p,
-.signUpFields label {
+.informationFields p,
+.informationFields label {
   display: block;
   margin-bottom: -10px;
   margin-top: 2%;
 }
 
-.signUpFields input {
+.informationFields input {
   margin-top: 4%;
   min-width: 18em;
   height: 37px;
@@ -40,23 +80,23 @@ body {
 }
 
 /*Radio Buttons*/
-.radiocontainer {
+.radiocontainers {
   display: block;
-  margin-left: -265px;
   margin-top: 15px;
+  margin-left: -260px;
 }
 
-.inputButton {
+.inputButtons {
   margin-left: 40px;
 }
 
 /*Button, code modified from:https://www.w3schools.com/css/css3_buttons.asp */
-.signUpButton {
+.confirmChangesButton {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.sButton {
+.csButton {
   background-color: #0080ff;
   font-family: "Open Sans", sans-serif;
   border: none;
@@ -70,14 +110,14 @@ body {
   margin-top: 20px;
 }
 
-.sButton span {
+.csButton span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.3s;
 }
 
-.sButton span:after {
+.csButton span:after {
   content: "\00bb";
   position: absolute;
   opacity: 0;
@@ -86,11 +126,11 @@ body {
   transition: 0.3s;
 }
 
-.sButton:hover span {
+.csButton:hover span {
   padding-right: 15px;
 }
 
-.sButton:hover span:after {
+.csButton:hover span:after {
   opacity: 1;
   right: 0;
 }

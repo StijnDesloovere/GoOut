@@ -102,50 +102,50 @@ class SignUpWindow extends React.Component {
         <div className="formFields">
           <div className="header">Create your account</div>
           <div className="signUpFields">
-            <label htmlFor="firstName">
+            <p className="firstName">
               <b>First name*</b>
-            </label>
+            </p>
             <input
               type="text"
               id="firstName"
               onChange={this.handleInputChanges}
             />
             <div className="error">{this.state.firstNameError}</div>
-            <label htmlFor="lastName">
+            <p className="lastName">
               <b>Last name*</b>
-            </label>
+            </p>
             <input
               type="text"
               id="lastName"
               onChange={this.handleInputChanges}
             />
             <div className="error">{this.state.lastNameError}</div>
-            <label htmlFor="email">
+            <p className="email">
               <b>Email*</b>
-            </label>
+            </p>
             <input type="text" id="email" onChange={this.handleInputChanges} />
             <div className="error">{this.state.emailError}</div>
-            <label htmlFor="password">
+            <p className="password">
               <b>Password*</b>
-            </label>
+            </p>
             <input
               type="password"
               id="password"
               onChange={this.handleInputChanges}
             />
             <div className="error">{this.state.passwordError}</div>
-            <label htmlFor="confirmPassword">
+            <p className="confirmPassword">
               <b>Confirm Password*</b>
-            </label>
+            </p>
             <input
               type="password"
               id="confirmPassword"
               onChange={this.handleInputChanges}
             />
             <div className="error">{this.state.confirmPasswordError}</div>
-            <label htmlFor="birthDate">
+            <p className="birthDate">
               <b>Birth date*</b>
-            </label>
+            </p>
             <input
               type="date"
               id="birthDate"
@@ -153,9 +153,9 @@ class SignUpWindow extends React.Component {
             />
             <div className="error">{this.state.birthDateError}</div>
 
-            <label htmlFor="gender">
+            <p className="gender">
               <b>Gender</b>
-            </label>
+            </p>
           </div>
           <div className="radiocontainer">
             <input
@@ -165,30 +165,29 @@ class SignUpWindow extends React.Component {
               type="radio"
               defaultChecked
             />
-            <label htmlFor="male">Male</label>
+            <label className="male">Male</label>
             <input
               className="inputButton"
               id="female"
               name="gender"
               type="radio"
             />
-            <label htmlFor="female">Female</label>
+            <label className="female">Female</label>
           </div>
           <div className="signUpFields">
-            <label htmlFor="location">
+            <p className="location">
               <b>Location</b>
-            </label>
+            </p>
             <input type="text" id="location" />
-            <label htmlFor="phoneNumber">
+            <p className="phoneNumber">
               <b>Phone number</b>
-            </label>
+            </p>
             <input type="text" id="phoneNumber" />
           </div>
-          <div className="lastFields"></div>
         </div>
         <div className="signUpButton">
           <button className="sButton" type="submit">
-            <span>Sign up</span>
+            <span>Sign Up</span>
           </button>
         </div>
       </form>

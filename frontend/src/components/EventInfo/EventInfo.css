@@ -1,0 +1,138 @@
+.eventInfoBlock {
+  width: 750px;
+  margin: auto;
+  background: whitesmoke;
+  border: 0;
+  border-radius: 10px;
+}
+/* Title*/
+.title {
+  background-color: #1e90ff;
+  border: 0;
+  height: 40px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+}
+
+.title b {
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+/* EventType + creator */
+.creatorInfo {
+  margin-top: -10px;
+  margin-left: 10px;
+  height: 25px;
+}
+
+.creatorInfo b {
+  color: #4169e1;
+}
+/* Location and date block*/
+.locationDate {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.clockImage {
+  width: 19px;
+  height: 19px;
+  margin-top: 16px;
+  margin-right: 2px;
+}
+
+.line {
+  border-left: 1px solid rgb(37, 37, 37);
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 12px;
+  height: 28px;
+}
+
+.locationImage {
+  width: 19px;
+  height: 19px;
+  margin-top: 16px;
+  margin-right: 2px;
+}
+
+/* image and description block*/
+.imageDescBox {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.image img {
+  display: block;
+  width: 250px;
+  margin-top: 10px;
+}
+
+.rightText p {
+  margin-left: 10px;
+}
+
+/* friends going/friends interested */
+
+.friends {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+.friendImage {
+  width: 19px;
+  height: 19px;
+  margin-top: 16px;
+  margin-right: 2px;
+}
+
+/* buttons, code modified from: https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_group_border */
+
+.eventButtons button:hover {
+  background-color: #4169e1;
+  border: 2px solid #4169e1;
+}
+.eventButtons button {
+  background-color: #1e90ff;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+  width: 375px;
+  color: white;
+}
+
+.goingButton {
+  border: 2px solid #1e90ff;
+  border-right: 1px solid #4169e1;
+  border-bottom-left-radius: 10px;
+}
+
+.interestedButton {
+  border: 2px solid #1e90ff;
+  border-left: 1px solid #4169e1;
+  border-bottom-right-radius: 10px;
+}
+
+.goingImage {
+  margin-right: 10px;
+  width: 25px;
+  filter: invert(100%);
+}
+
+.interestedImage {
+  width: 23px;
+  height: 23px;
+  margin-right: 10px;
+  filter: invert(100%);
+}

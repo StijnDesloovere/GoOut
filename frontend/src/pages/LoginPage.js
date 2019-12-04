@@ -1,10 +1,17 @@
 import React from "react";
 import LoginWindow from "../components/Login/Login";
 
-const Login = () => (
-  <div>
-    <LoginWindow />
-  </div>
-);
+class Login extends React.Component {
+  componentDidMount() {
+    document.title = "Login | GoOut";
+  }
+  render() {
+    return (
+      <div>
+        <LoginWindow />
+      </div>
+    );
+  }
+}
 
 export default Login;

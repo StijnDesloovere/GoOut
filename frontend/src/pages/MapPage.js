@@ -1,11 +1,17 @@
 import React from "react";
 import MenuBar from "../components/Menu/Menu";
 
-const LocationMap = () => (
-  <div>
-    <MenuBar />
-    <h1>This is where the map has to come</h1>
-  </div>
-);
+class LocationMap extends React.Component {
+  componentDidMount() {
+    document.title = "Map | GoOut";
+  }
+  render() {
+    return (
+      <div>
+        <MenuBar />
+      </div>
+    );
+  }
+}
 
 export default LocationMap;
