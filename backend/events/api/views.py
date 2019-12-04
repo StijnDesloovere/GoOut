@@ -1,7 +1,9 @@
 from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
-    CreateAPIView
+    CreateAPIView,
+    UpdateAPIView,
+    DestroyAPIView
 )
 
 from events.models import Event
@@ -19,5 +21,15 @@ class EventDetailView(RetrieveAPIView):
 
 
 class EventCreateView(CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+
+class EventUpdateView(UpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+
+
+class EventDeleteView(DestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
