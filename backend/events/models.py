@@ -1,12 +1,13 @@
 from django.db import models
+import datetime
 
 
 class Event(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    date = models.DateField
-    startTime = models.TimeField
-    endTime = models.TimeField
+    date = models.DateField(default=datetime.date.today)
+    startTime = models.TimeField(default=datetime.time)
+    endTime = models.TimeField(default=datetime.time)
     location = models.CharField(max_length=255)
 
     # TODO make sure saving images is supported
