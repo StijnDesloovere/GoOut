@@ -5,6 +5,7 @@ import datetime
 class Event(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    category = models.CharField(max_length=30, default="Other")
     date = models.DateField(default=datetime.date.today)
     startTime = models.TimeField(default=datetime.time)
     endTime = models.TimeField(default=datetime.time)
