@@ -110,10 +110,18 @@ class NewEventBar extends React.Component {
                     <b>Event category</b>
                   </p>
                   <select>
-                    <option value="Conference">Conference</option>
-                    <option value="Meetup">Meetup</option>
-                    <option value="Party">Party</option>
-                    <option value="Sporting event">Sporting event</option>
+                    <option value="PA" selected="">Party</option>
+                    <option value="CO">Concert</option>
+                    <option value="CF">Conference</option>
+                    <option value="CM">Competition</option>
+                    <option value="MU">Meetup</option>
+                    <option value="SE">Sporting Event</option>
+                    <option value="FE">Festival</option>
+                    <option value="FI">Film</option>
+                    <option value="TH">Theater</option>
+                    <option value="CS">Comedy Show</option>
+                    <option value="AE">Art Exhibition</option>
+                    <option value="OT">Other</option>
                   </select>
                 </div>
               </div>
