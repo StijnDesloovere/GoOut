@@ -4,16 +4,17 @@ import datetime
 
 class Event(models.Model):
     CATEGORY_CHOICES = [
-        ("PA", "Party")
-        ("CO", "Concert")
-        ("CF", "Conference")
-        ("MU", "Meetup")
-        ("SE", "Sporting Event")
-        ("FE", "Festival")
-        ("FI", "Film")
-        ("TH", "Theater")
-        ("CS", "Comedy Show")
-        ("AE", "Art Exhibition")
+        ("PA", "Party"),
+        ("CO", "Concert"),
+        ("CF", "Conference"),
+        ("CM", "Competition"),
+        ("MU", "Meetup"),
+        ("SE", "Sporting Event"),
+        ("FE", "Festival"),
+        ("FI", "Film"),
+        ("TH", "Theater"),
+        ("CS", "Comedy Show"),
+        ("AE", "Art Exhibition"),
         ("OT", "Other")
     ]
 
