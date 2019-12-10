@@ -30,5 +30,7 @@ class Event(models.Model):
     # TODO make sure saving images is supported
     #image = models.ImageField()
 
+    # TODO make sure creator of event and people going/interested are implemented
+
     def __str__(self):
         return self.name
