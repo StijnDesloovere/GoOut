@@ -1,9 +1,11 @@
 from django.db import models
 import datetime
 
+# Model for an event
+
 
 class Event(models.Model):
-    CATEGORY_CHOICES = [
+    CATEGORY_CHOICES = [  # All types of event categories
         ("PA", "Party"),
         ("CO", "Concert"),
         ("CF", "Conference"),

@@ -147,3 +147,7 @@ REST_FRAMEWORK = {
 
 # Corse header settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Authentication settings
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_USERNAME_REQUIRED = False
