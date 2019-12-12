@@ -11,18 +11,21 @@ const divStyle ={
 class LocationMap extends React.Component {
   componentDidMount() {
     document.title = "Map | GoOut";
-   this.map = L.map('map').setView([51.5, -0.09], 13);
+    //For detecting current location
+   this.map = L.map('map').locate({setView:true, maxZoom: 120}).on("locationfound", e => {
+    
+    L.marker([e.latitude, e.longitude]).bindPopup("Your location!").addTo(this.map);}).on("locationerror", error => {
+  
+    console.log("location not found");
+  });
+
 
     L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',{
       detectRetina: true,
-      maxZoom: 7
     }).addTo(this.map);
-    this.map.invalidateSize();
-    L.marker([51.5, -0.09]).addTo(this.map);
 
-    function getCoördinates(item){
-      
-    }
+    this.map.invalidateSize();
+    
   }
   render() {
     return(
