@@ -19,6 +19,10 @@ class LocationMap extends React.Component {
     }).addTo(this.map);
     this.map.invalidateSize();
     L.marker([51.5, -0.09]).addTo(this.map);
+
+    function getCoördinates(item){
+      
+    }
   }
   render() {
     return(
