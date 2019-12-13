@@ -123,6 +123,7 @@ class NewEventBar extends React.Component {
                     <option value="PA" selected="">Party</option>
                     <option value="CO">Concert</option>
                     <option value="CF">Conference</option>
+                    <option value="FF">Food Festival</option>
                     <option value="CM">Competition</option>
                     <option value="MU">Meetup</option>
                     <option value="SE">Sporting Event</option>

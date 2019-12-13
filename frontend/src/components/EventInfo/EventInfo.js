@@ -7,6 +7,7 @@ const EVENTTYPE_CHOICES = {
   "PA": "Party",
   "CO": "Concert",
   "CF": "Conference",
+  "FF": "Food Festival",
   "CM": "Competition",
   "MU": "Meetup",
   "SE": "Sporting Event",
