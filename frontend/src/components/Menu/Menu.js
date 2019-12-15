@@ -48,13 +48,6 @@ class MenuBar extends React.Component {
           <li>
             <div className="horizontalLine" />
           </li>
-          <li>
-            <button>
-              <Link className="menuRedirect" to="/followers">
-                Followers
-              </Link>
-            </button>
-          </li>
         </ul>
         <div
           onClick={e => this.togglePanel(e)}
@@ -73,16 +66,24 @@ class MenuBar extends React.Component {
           {this.state.open ? (
             <ul className="accountMenu">
               <li>
-                <Link className="accountTab" to="/account">
-                  Account
+                <Link className="tabEntry" to="/profile">
+                  Profile
                 </Link>
               </li>
               <li>
                 <div className="horizontalMenuLine" />
               </li>
               <li>
-                <Link className="eventsTab" to="/account">
-                  My events
+                <Link className="tabEntry" to="/settings">
+                  Settings
+                </Link>
+              </li>
+              <li>
+                <div className="horizontalMenuLine" />
+              </li>
+              <li>
+                <Link className="tabEntry" to="/followers">
+                  Followers
                 </Link>
               </li>
             </ul>

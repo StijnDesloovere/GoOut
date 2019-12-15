@@ -1,0 +1,11 @@
+.PFcontent {
+  margin-left: 10%;
+  width: 80%;
+}
+
+@media screen and (max-width: 1024px) {
+  .PFcontent {
+    margin-left: 0;
+    width: 100%;
+  }
+}

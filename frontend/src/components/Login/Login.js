@@ -62,7 +62,9 @@ class LoginWindow extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="loginForm">
-          <div className="header">Welcome to GoOut!</div>
+          <div className="header">
+            <img src={require(`../../images/Logo.png`)} alt="" />
+          </div>
           <div className="inputFields">
             <div className="usernameInput">
               <label htmlFor="username">

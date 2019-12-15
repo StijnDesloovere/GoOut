@@ -39,6 +39,27 @@ class Home extends React.Component {
         SpongeBob SquarePants!
         SpongeBob SquarePants!
         SpongeBob SquarePants!
+        SpongeBob SquarePants!
+        
+        Are ya' ready, kids?
+        Aye, aye Captain!
+        I can't hear you!
+        Aye, aye, captain!
+        Ohh!
+        
+        Who lives in a pineapple under the sea?
+        SpongeBob SquarePants!
+        Absorbent and yellow and porous is he
+        SpongeBob SquarePants!
+        If nautical nonsense be something you wish
+        SpongeBob SquarePants!
+        Then drop on the deck and flop like a fish!
+        SpongeBob SquarePants!
+        Ready?!
+        
+        SpongeBob SquarePants!
+        SpongeBob SquarePants!
+        SpongeBob SquarePants!
         SpongeBob SquarePants!"
           friendsGoing={5}
           friendsInterested={9}
