@@ -2,6 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./EventInfo.css";
 
+// Dictionary of all possible event types
+const EVENTTYPE_CHOICES = {
+  "PA": "Party",
+  "CO": "Concert",
+  "CF": "Conference",
+  "CM": "Competition",
+  "MU": "Meetup",
+  "SE": "Sporting Event",
+  "FE": "Festival",
+  "FI": "Film",
+  "TH": "Theater",
+  "CS": "Comedy Show",
+  "AE": "Art Exhibition",
+  "OT": "Other"
+}
+
 class EventComponent extends React.Component {
   render() {
     return (
@@ -13,7 +29,7 @@ class EventComponent extends React.Component {
         </div>
         <div className="creatorInfo">
           <p className="creator">
-            <b>{this.props.eventType}</b> organized by{" "}
+            <b>{EVENTTYPE_CHOICES[this.props.eventType]}</b> organized by{" "}
             <b>{this.props.creator}</b>
           </p>
         </div>
@@ -24,7 +40,7 @@ class EventComponent extends React.Component {
             alt=""
           ></img>
           <p className="date">
-            {this.props.date} from {this.props.time}
+            {this.props.date} from {this.props.startTime}-{this.props.endTime}
           </p>
           <div className="line"></div>
           <img
@@ -83,7 +99,8 @@ EventComponent.propTypes = {
   eventType: PropTypes.string,
   image: PropTypes.string,
   date: PropTypes.string,
-  time: PropTypes.string,
+  startTime: PropTypes.string,
+  endTime: PropTypes.string,
   location: PropTypes.string,
   description: PropTypes.string,
   friendsGoing: PropTypes.number,

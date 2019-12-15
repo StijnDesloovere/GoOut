@@ -1,5 +1,6 @@
 import React from "react";
 import "./NewEventTab.css";
+import axios from "axios";
 
 const initialState = {
   eventName: "",
@@ -61,7 +62,16 @@ class NewEventBar extends React.Component {
     console.log(this.state.eventName);
 
     if (valid) {
-      console.log(this.state);
+      // Send a post request to the server
+      axios.post('http://127.0.0.1:8000/api/events/', {
+        name: event.target.elements.eventName.value,
+        description: event.target.elements.description.value,
+        category: event.target.elements.eventCategory.value,
+        date: event.target.elements.date.value,
+        startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
+        endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
+        location: event.target.elements.eventLocation.value
+      })
       this.setState(initialState);
     }
   };
@@ -109,11 +119,19 @@ class NewEventBar extends React.Component {
                   <p>
                     <b>Event category</b>
                   </p>
-                  <select>
-                    <option value="Conference">Conference</option>
-                    <option value="Meetup">Meetup</option>
-                    <option value="Party">Party</option>
-                    <option value="Sporting event">Sporting event</option>
+                  <select id="eventCategory">
+                    <option value="PA" selected="">Party</option>
+                    <option value="CO">Concert</option>
+                    <option value="CF">Conference</option>
+                    <option value="CM">Competition</option>
+                    <option value="MU">Meetup</option>
+                    <option value="SE">Sporting Event</option>
+                    <option value="FE">Festival</option>
+                    <option value="FI">Film</option>
+                    <option value="TH">Theater</option>
+                    <option value="CS">Comedy Show</option>
+                    <option value="AE">Art Exhibition</option>
+                    <option value="OT">Other</option>
                   </select>
                 </div>
               </div>
@@ -143,9 +161,9 @@ class NewEventBar extends React.Component {
                     <b>From</b>
                   </p>
                   <div className="timeInput">
-                    <input type="number" min="0" max="24" defaultValue="0" />
+                    <input type="number" min="0" max="24" defaultValue="0" id="startTimeHour"/>
                     <p> : </p>
-                    <input type="number" min="0" max="60" defaultValue="0" />
+                    <input type="number" min="0" max="60" defaultValue="0" id="startTimeMinute"/>
                   </div>
                 </div>
                 <div className="endTime">
@@ -158,6 +176,7 @@ class NewEventBar extends React.Component {
                       min="0"
                       max="24"
                       defaultValue="0"
+                      id="endTimeHour"
                     ></input>
                     <p> : </p>
                     <input
@@ -165,6 +184,7 @@ class NewEventBar extends React.Component {
                       min="0"
                       max="60"
                       defaultValue="0"
+                      id="endTimeMinute"
                     ></input>
                   </div>
                 </div>
@@ -174,7 +194,7 @@ class NewEventBar extends React.Component {
                   <p>
                     <b>Location</b>
                   </p>
-                  <input type="text"></input>
+                  <input type="text" id="eventLocation"></input>
                 </div>
               </div>
               <div className="fifthRow">
