@@ -25,6 +25,7 @@
 }
 
 /* Form */
+/* text fields, code modified from: https://github.com/ipenywis/react-login-register/blob/master/src/components/login/style.scss */
 .firstRow {
   display: flex;
   flex-direction: row;
@@ -121,4 +122,28 @@
 .newEventError {
   font-size: 12px;
   color: red;
+}
+
+@media screen and (max-width: 481px) {
+  .newEventBlock {
+    width: 100%;
+  }
+
+  .firstRow select,
+  .firstRow input,
+  .eventDate input {
+    width: 100%;
+  }
+
+  .fifthRow textarea {
+    width: 90%;
+  }
+
+  .endTime {
+    margin-left: 40px;
+  }
+
+  .submitEvent button {
+    width: 108%;
+  }
 }

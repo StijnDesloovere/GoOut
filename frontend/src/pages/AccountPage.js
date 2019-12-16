@@ -4,7 +4,7 @@ import Account from "../components/Account/Account";
 
 class AccountDetails extends React.Component {
   componentDidMount() {
-    document.title = "Account | GoOut";
+    document.title = "Settings | GoOut";
   }
 
   render() {

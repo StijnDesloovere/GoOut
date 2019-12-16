@@ -1,0 +1,77 @@
+.myEventInstanceObject {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  margin-left: 25%;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  border-color: #1e90ff;
+}
+
+.eventImage img {
+  width: 100px;
+  padding-top: 3%;
+  padding-left: 3%;
+}
+
+.compactEventDetails {
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+}
+
+.compactEventDetails p {
+  margin-left: 7px;
+  font-size: 17px;
+}
+
+/*button*/
+.removeButtonComponent {
+  margin-left: auto;
+  padding-right: 5px;
+}
+
+.removeButton {
+  width: 108px;
+  height: 108px;
+  border-style: none;
+  background-color: whitesmoke;
+}
+
+/*Popup window*/
+.deletePopupHeader {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+
+.deletePopupMessage {
+  margin-top: 10px;
+}
+
+.deletePopupButtons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.deletePopupButtons button {
+  width: 30%;
+}
+
+@media screen and (max-width: 481px) {
+  .myEventInstanceObject {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  .compactEventDetails p {
+    margin-left: 7px;
+    font-size: 12px;
+  }
+}

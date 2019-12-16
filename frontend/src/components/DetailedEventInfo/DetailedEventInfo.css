@@ -1,0 +1,140 @@
+.eventInfoTopObject {
+  padding-top: 70px;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  background-color: whitesmoke;
+}
+
+.detailedEventImage img {
+  width: 250px;
+  margin-left: 5px;
+}
+
+.detailedEventInfoTitle {
+  font-size: 50px;
+  padding-left: 25px;
+  display: inline-block;
+}
+
+/* Location and date block*/
+.DElocationDate {
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.DEclockImage {
+  width: 30px;
+  height: 30px;
+  margin-top: 25px;
+  margin-right: 2px;
+}
+
+.DEline {
+  border-left: 1px solid rgb(37, 37, 37);
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 25px;
+  height: 28px;
+}
+
+.DElocationImage {
+  width: 30px;
+  height: 30px;
+  margin-top: 25px;
+  margin-right: 2px;
+}
+
+/*Organizer info */
+.DEorganizer {
+  margin-left: 30px;
+  font-size: 25px;
+}
+
+.DEorganizer b {
+  color: #4169e1;
+}
+
+/*Description */
+.eventInfoBottomObject {
+  margin-left: 10%;
+  width: 80%;
+}
+/* going/intested buttons inspired from:https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_group */
+
+.DEbuttons button {
+  background-color: whitesmoke;
+
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  color: rgb(119, 119, 119);
+}
+
+.DEbuttons button:first-child {
+  border-color: rgb(199, 198, 198);
+  border-style: solid;
+}
+
+.DEbuttons button:last-child {
+  border-color: rgb(199, 198, 198);
+  border-style: solid;
+  border-left: none;
+}
+
+.DEbuttons button:hover {
+  background-color: rgb(214, 214, 214);
+}
+
+.DEgoingImage {
+  width: 20px;
+  margin-right: 5px;
+  filter: invert(50%);
+}
+.DEinterestedImage {
+  width: 19px;
+  margin-right: 5px;
+  filter: invert(50%);
+}
+
+/*people going/interested*/
+
+.DEpeopleGoing b,
+.DEpeopleInterested b {
+  color: #4169e1;
+}
+
+@media screen and (max-width: 1024px) {
+  .detailedEventImage img {
+    width: 150px;
+  }
+
+  .detailedEventInfoTitle {
+    font-size: 20px;
+  }
+
+  .DElocationDate {
+    font-size: 10px;
+  }
+
+  .DEorganizer {
+    font-size: 15px;
+  }
+
+  .DEclockImage {
+    width: 15px;
+    height: 15px;
+  }
+
+  .DElocationImage {
+    width: 15px;
+    height: 15px;
+  }
+}

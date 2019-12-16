@@ -203,7 +203,6 @@ class NewEventBar extends React.Component {
                   <b>Description</b>
                 </p>
                 <textarea
-                  maxLength="2000"
                   id="description"
                   value={this.state.description || ""}
                   onChange={this.handleInputChanges}

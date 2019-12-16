@@ -1,0 +1,104 @@
+.profileObject {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.PFheader {
+  display: flex;
+  flex-direction: row;
+  background-color: whitesmoke;
+  padding-top: 10px;
+}
+
+.PFpicture img {
+  width: 250px;
+  height: 250px;
+  margin-left: 5px;
+}
+
+.PFheaderInfo {
+  margin-top: 130px;
+  margin-left: 15px;
+}
+
+.PFfollowerInfo {
+  font-size: 19px;
+}
+
+/*Settings button*/
+.PFsettingsButton {
+  margin-left: auto;
+  padding-right: 5px;
+}
+.PFsettingsButton button {
+  border: solid;
+  border-radius: 30px;
+  font-size: 20px;
+}
+
+.PFsettingsButton button:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+.PFsettingsImage {
+  width: 30px;
+  height: 30px;
+}
+
+.PFsettingsLink {
+  text-decoration: none;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #000;
+}
+
+.PFsettingsText {
+  margin-left: 10px;
+}
+
+/* Tabs */
+.PFcontent {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  /*General object*/
+  .profileObject {
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  /*image*/
+  .PFpicture img {
+    width: 100px;
+    height: 100px;
+  }
+
+  /*header info*/
+  .PFheaderInfo {
+    margin-top: 0px;
+    margin-left: 15px;
+    font-size: 10px;
+  }
+
+  .PFfollowerInfo {
+    font-size: 10px;
+  }
+
+  /*button*/
+  .PFsettingsButton button {
+    border: solid;
+    border-radius: 30px;
+    font-size: 10px;
+  }
+
+  .PFsettingsImage {
+    width: 15px;
+    height: 15px;
+  }
+}

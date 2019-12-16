@@ -1,0 +1,81 @@
+Date : 2019-12-15 22:34:04
+Directory : c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src
+Total : 40 files,  2637 codes, 87 comments, 340 blanks, all 3064 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         25 |      1,623 |         49 |        166 |      1,838 |
+| CSS        |         14 |      1,013 |         38 |        174 |      1,225 |
+| XML        |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                               | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                  |         40 |      2,637 |         87 |        340 |      3,064 |
+| components                                                                                                                         |         22 |      1,989 |         52 |        263 |      2,304 |
+| components\Account                                                                                                                 |          2 |        265 |          9 |         34 |        308 |
+| components\DetailedEventInfo                                                                                                       |          2 |        198 |          5 |         28 |        231 |
+| components\EventInfo                                                                                                               |          2 |        225 |          6 |         28 |        259 |
+| components\Followers                                                                                                               |          2 |         45 |          0 |          7 |         52 |
+| components\Login                                                                                                                   |          2 |        171 |          7 |         27 |        205 |
+| components\Menu                                                                                                                    |          2 |        216 |          3 |         25 |        244 |
+| components\MyEvents                                                                                                                |          2 |         24 |          0 |          6 |         30 |
+| components\MyEventsInstance                                                                                                        |          2 |        155 |          2 |         17 |        174 |
+| components\NewEventTab                                                                                                             |          2 |        311 |          8 |         38 |        357 |
+| components\Profile                                                                                                                 |          2 |        121 |          6 |         21 |        148 |
+| components\SignUp                                                                                                                  |          2 |        258 |          6 |         32 |        296 |
+| pages                                                                                                                              |         12 |        489 |          0 |         52 |        541 |
+| pages\FollowersPage                                                                                                                |          2 |         68 |          0 |          9 |         77 |
+| pages\ProfilePage                                                                                                                  |          2 |        129 |          0 |          7 |        136 |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                           | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\App.js                                             | JavaScript |         39 |          1 |          5 |         45 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\App.test.js                                        | JavaScript |          8 |          0 |          2 |         10 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Account\Account.css                     | CSS        |        113 |          6 |         18 |        137 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Account\Account.js                      | JavaScript |        152 |          3 |         16 |        171 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\DetailedEventInfo\DetailedEventInfo.css | CSS        |        112 |          5 |         24 |        141 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\DetailedEventInfo\DetailedEventInfo.js  | JavaScript |         86 |          0 |          4 |         90 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\EventInfo\EventInfo.css                 | CSS        |        135 |          6 |         24 |        165 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\EventInfo\EventInfo.js                  | JavaScript |         90 |          0 |          4 |         94 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Followers\Followers.css                 | CSS        |         26 |          0 |          4 |         30 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Followers\Followers.js                  | JavaScript |         19 |          0 |          3 |         22 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Login\Login.css                         | CSS        |         80 |          4 |         12 |         96 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Login\Login.js                          | JavaScript |         91 |          3 |         15 |        109 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Menu\Menu.css                           | CSS        |        125 |          2 |         19 |        146 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Menu\Menu.js                            | JavaScript |         91 |          1 |          6 |         98 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\MyEventsInstance\MyEventInstance.css    | CSS        |         64 |          2 |         12 |         78 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\MyEventsInstance\MyEventInstance.js     | JavaScript |         91 |          0 |          5 |         96 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\MyEvents\MyEvents.css                   | CSS        |         12 |          0 |          2 |         14 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\MyEvents\MyEvents.js                    | JavaScript |         12 |          0 |          4 |         16 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\NewEventTab\NewEventTab.css             | CSS        |        126 |          4 |         20 |        150 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\NewEventTab\NewEventTab.js              | JavaScript |        185 |          4 |         18 |        207 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Profile\Profile.css                     | CSS        |         82 |          6 |         17 |        105 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\Profile\Profile.js                      | JavaScript |         39 |          0 |          4 |         43 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\SignUp\SignUp.css                       | CSS        |         81 |          3 |         13 |         97 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\components\SignUp\SignUp.js                        | JavaScript |        177 |          3 |         19 |        199 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\index.css                                          | CSS        |         12 |          0 |          2 |         14 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\index.js                                           | JavaScript |          7 |          3 |          3 |         13 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\logo.svg                                           | XML        |          1 |          0 |          0 |          1 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\AccountPage.js                               | JavaScript |         17 |          0 |          4 |         21 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\DetailedEventPage.js                         | JavaScript |         47 |          0 |          5 |         52 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\ErrorPage.js                                 | JavaScript |         14 |          0 |          3 |         17 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\FollowersPage\FollowersPage.css              | CSS        |         35 |          0 |          5 |         40 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\FollowersPage\FollowersPage.js               | JavaScript |         33 |          0 |          4 |         37 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\HomePage.js                                  | JavaScript |        123 |          0 |         12 |        135 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\LoginPage.js                                 | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\MapPage.js                                   | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\MyEventsPage.js                              | JavaScript |         46 |          0 |          3 |         49 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\ProfilePage\ProfilePage.css                  | CSS        |         10 |          0 |          2 |         12 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\ProfilePage\ProfilePage.js                   | JavaScript |        119 |          0 |          5 |        124 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\pages\SignUpPage.js                                | JavaScript |         15 |          0 |          3 |         18 |
+| c:\Users\Gebruiker\OneDrive - Vrije Universiteit Brussel\Web\GoOut\frontend\src\serviceWorker.js                                   | JavaScript |         92 |         31 |         13 |        136 |
+| Total                                                                                                                              |            |      2,637 |         87 |        340 |      3,064 |
++------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
