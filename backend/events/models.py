@@ -9,7 +9,7 @@ class Event(models.Model):
         ("PA", "Party"),
         ("CO", "Concert"),
         ("CF", "Conference"),
-        ("FF", "Food Festival")
+        ("FF", "Food Festival"),
         ("CM", "Competition"),
         ("MU", "Meetup"),
         ("SE", "Sporting Event"),
