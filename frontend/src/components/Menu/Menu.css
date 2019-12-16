@@ -15,7 +15,7 @@
   height: 70px;
 }
 .menuItems {
-  margin-left: 1350px;
+  margin-left: 62%;
   display: flex;
   justify-content: space-around;
 }
@@ -87,6 +87,8 @@
   font-size: 13px;
   text-align: center;
   font-weight: bold;
+  padding-left: 2.3%;
+  padding-right: 2.3%;
 }
 
 .accountMenu li {

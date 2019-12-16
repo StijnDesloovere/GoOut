@@ -17,6 +17,10 @@ class MenuBar extends React.Component {
     this.setState({ open: !this.state.open });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
   render() {
     return (
       <div className="menuBar">
@@ -71,6 +75,11 @@ class MenuBar extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link className="tabEntry" to="/followers">
+                  Followers
+                </Link>
+              </li>
+              <li>
                 <div className="horizontalMenuLine" />
               </li>
               <li>
@@ -82,8 +91,8 @@ class MenuBar extends React.Component {
                 <div className="horizontalMenuLine" />
               </li>
               <li>
-                <Link className="tabEntry" to="/followers">
-                  Followers
+                <Link className="tabEntry" onClick={this.logout} to="/">
+                  Logout
                 </Link>
               </li>
             </ul>

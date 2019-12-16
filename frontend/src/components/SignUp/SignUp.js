@@ -1,5 +1,7 @@
 import React from "react";
 import "./SignUp.css";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 
 const initialState = {
   firstName: "",
@@ -84,6 +86,26 @@ class SignUpWindow extends React.Component {
     return true;
   };
 
+  // Send a post request to the server to register the user
+  authenticateSignUp(email, password1, password2) {
+    axios.post("http://127.0.0.1:8000/rest-auth/registration/", {
+      email: email,
+      password1: password1,
+      password2: password2
+    })
+    .then(result => {
+      const token = result.data.key;
+      localStorage.setItem('token', token);
+    })
+    .catch(error => {
+      this.setState({
+        signUpError: "An account with these credentials couldn't be made"
+      })
+      return false
+    })
+    return true
+  }
+
   /*Validate the form. Either display the correct error messages or send the data*/
   handleSubmit = event => {
     event.preventDefault();
@@ -91,8 +113,10 @@ class SignUpWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      console.log(this.state);
-      this.setState(initialState);
+      const signedUp = this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword);
+      if (signedUp) {
+        this.props.history.replace("/home");
+      }
     }
   };
 
@@ -184,6 +208,7 @@ class SignUpWindow extends React.Component {
             </p>
             <input type="text" id="phoneNumber" />
           </div>
+          <div className="error">{this.state.signUpError}</div>
         </div>
         <div className="signUpButton">
           <button className="sButton" type="submit">
@@ -195,4 +220,4 @@ class SignUpWindow extends React.Component {
   }
 }
 
-export default SignUpWindow;
+export default withRouter(SignUpWindow);
