@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 # Model for an event
@@ -25,15 +26,26 @@ class Event(models.Model):
     description = models.TextField()
     category = models.CharField(
         max_length=2, choices=CATEGORY_CHOICES, default="OT")
+
+    #creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
     date = models.DateField(default=datetime.date.today)
     startTime = models.TimeField(default=datetime.time)
     endTime = models.TimeField(default=datetime.time)
+
     location = models.CharField(max_length=255)
+    lat = models.DecimalField(
+        max_digits=15, decimal_places=11, blank=True, null=True)
+    long = models.DecimalField(
+        max_digits=15, decimal_places=11, blank=True, null=True)
+
+    going = models.ManyToManyField(User, related_name='going')
+    interested = models.ManyToManyField(User, related_name='interested')
 
     # TODO make sure saving images is supported
     #image = models.ImageField()
 
-    # TODO make sure creator of event and people going/interested are implemented
+    # TODO make sure people going/interested is implemented
 
     def __str__(self):
         return self.name
