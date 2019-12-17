@@ -93,3 +93,7 @@
   opacity: 1;
   right: 0;
 }
+
+#loginError {
+  margin-top: 20px;
+}

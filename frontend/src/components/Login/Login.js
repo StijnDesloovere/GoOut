@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import axios from "axios"
 
 import "./Login.css";
 
 const initialState = {
-  username: "",
+  email: "",
   password: "",
-  usernameError: "",
-  passwordError: ""
+  emailError: "",
+  passwordError: "",
+  loginError: ""
 };
 
 class LoginWindow extends React.Component {
@@ -15,7 +17,6 @@ class LoginWindow extends React.Component {
 
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -23,20 +24,20 @@ class LoginWindow extends React.Component {
 
   /*Check if the form is filled in correctly*/
   validate = () => {
-    let usernameError = "";
+    let emailError = "";
     let passwordError = "";
 
-    if (!this.state.username) {
-      usernameError = "Fill in your username";
+    if (!this.state.email) {
+      emailError = "Fill in your email";
     }
 
     if (!this.state.password) {
       passwordError = "Fill in your password";
     }
 
-    if (usernameError || passwordError) {
+    if (emailError || passwordError) {
       this.setState({
-        usernameError,
+        emailError,
         passwordError
       });
       return false;
@@ -45,6 +46,25 @@ class LoginWindow extends React.Component {
     return true;
   };
 
+  // Tries to log in with the specified email and password
+  authenticateLogin(email, password) {
+    axios.post("http://127.0.0.1:8000/rest-auth/login/", {
+      username: email,
+      password: password
+    })
+    .then(result => {
+      const token = result.data.key;
+      localStorage.setItem('token', token);
+    })
+    .catch(error => {
+      this.setState({
+        loginError: "Wrong combination of email and password"
+      })
+      return false
+    })
+    return true
+  }
+
   /*Validate the form. Either display the correct error messages or send the data*/
   handleSubmit = event => {
     event.preventDefault();
@@ -52,9 +72,10 @@ class LoginWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      console.log(this.state);
-      this.setState(initialState);
-      this.props.history.push("/home");
+      const loggedIn = this.authenticateLogin(this.state.email, this.state.password);
+      if(loggedIn) {
+        this.props.history.push("/home");
+      }
     }
   };
 
@@ -66,16 +87,16 @@ class LoginWindow extends React.Component {
             <img src={require(`../../images/Logo.png`)} alt="" />
           </div>
           <div className="inputFields">
-            <div className="usernameInput">
-              <label htmlFor="username">
-                <b>Username</b>
+            <div className="emailInput">
+              <label htmlFor="email">
+                <b>Email</b>
               </label>
               <input
                 type="text"
-                id="username"
+                id="email"
                 onChange={this.handleInputChanges}
               />
-              <div className="errorLogin">{this.state.usernameError}</div>
+              <div className="errorLogin">{this.state.emailError}</div>
             </div>
             <div className="passwordInput">
               <label htmlFor="password">
@@ -99,6 +120,7 @@ class LoginWindow extends React.Component {
               <span>Login</span>
             </button>
           </div>
+          <div className="errorLogin" id="loginError">{this.state.loginError}</div>
         </div>
       </form>
     );
