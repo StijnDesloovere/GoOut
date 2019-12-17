@@ -58,11 +58,16 @@ class LoginWindow extends React.Component {
     })
     .catch(error => {
       this.setState({
+        ...this.state,
         loginError: "Wrong combination of email and password"
       })
-      return false
+      return true
     })
-    return true
+    .then(ErrorHappened => {
+      if(!ErrorHappened) {
+        this.props.history.push("/home");
+      }
+    })
   }
 
   /*Validate the form. Either display the correct error messages or send the data*/
@@ -72,10 +77,7 @@ class LoginWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      const loggedIn = this.authenticateLogin(this.state.email, this.state.password);
-      if(loggedIn) {
-        this.props.history.push("/home");
-      }
+      this.authenticateLogin(this.state.email, this.state.password);
     }
   };
 

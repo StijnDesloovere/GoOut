@@ -15,7 +15,8 @@ const initialState = {
   emailError: "",
   passwordError: "",
   confirmPasswordError: "",
-  birthDateError: ""
+  birthDateError: "",
+  signUpError: ""
 };
 
 class SignUpWindow extends React.Component {
@@ -98,11 +99,16 @@ class SignUpWindow extends React.Component {
     })
     .catch(error => {
       this.setState({
+        ...this.state,
         signUpError: "An account with these credentials couldn't be made"
       })
-      return false
+      return true
     })
-    return true
+    .then(ErrorHappened => {
+      if(!ErrorHappened) {
+        this.props.history.push("/home");
+      }
+    })
   }
 
   /*Validate the form. Either display the correct error messages or send the data*/
@@ -112,10 +118,7 @@ class SignUpWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      const signedUp = this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword);
-      if (signedUp) {
-        this.props.history.replace("/home");
-      }
+      this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword);
     }
   };
 
