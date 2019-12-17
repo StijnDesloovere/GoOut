@@ -16,7 +16,6 @@ class NewEventBar extends React.Component {
 
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });

@@ -15,7 +15,6 @@ class Account extends React.Component {
   state = initialState;
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });
