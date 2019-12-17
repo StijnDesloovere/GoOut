@@ -32,7 +32,7 @@ class App extends Component {
           <Route exact path="/map" component={LocationMap} />
           <Route exact path="/settings" component={AccountDetails} />
           <Route exact path="/myevents" component={myEvents} />
-          <Route exact path="/event" component={DetailedEvent} />
+          <Route exact path="/event/:eventID" component={DetailedEvent} />
           <Route exact path="/profile" component={ProfilePage} />
           <Redirect to="/404" />
         </Switch>

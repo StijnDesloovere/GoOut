@@ -1,23 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./EventInfo.css";
-
-// Dictionary of all possible event types
-const EVENTTYPE_CHOICES = {
-  "PA": "Party",
-  "CO": "Concert",
-  "CF": "Conference",
-  "FF": "Food Festival",
-  "CM": "Competition",
-  "MU": "Meetup",
-  "SE": "Sporting Event",
-  "FE": "Festival",
-  "FI": "Film",
-  "TH": "Theater",
-  "CS": "Comedy Show",
-  "AE": "Art Exhibition",
-  "OT": "Other"
-}
+import EVENTTYPE_CHOICES from "./EventCategories"
 
 class EventComponent extends React.Component {
   render() {
@@ -65,10 +49,11 @@ class EventComponent extends React.Component {
             src={require("../../images/people.png")}
             alt=""
           ></img>
-          <p className="going">{this.props.friendsGoing} friends are going</p>
+          <p className="going"> {this.state.event.going.length} friends are going</p>
           <div className="line"></div>
           <p className="interested">
-            {this.props.friendsInterested} friends are interested
+            
+          {this.state.event.interested.length} friends are interested
           </p>
         </div>
         <div className="eventButtons">
