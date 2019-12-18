@@ -4,5 +4,5 @@ export const getToken = () => {
 
 export const isLoggedIn = () => {
     const token = getToken();
-    return token != undefined
+    return token !== undefined
 }

@@ -49,11 +49,11 @@ class EventComponent extends React.Component {
             src={require("../../images/people.png")}
             alt=""
           ></img>
-          <p className="going"> {this.state.event.going.length} friends are going</p>
+          <p className="going"> 0 friends are going</p>
           <div className="line"></div>
           <p className="interested">
             
-          {this.state.event.interested.length} friends are interested
+          0 friends are interested
           </p>
         </div>
         <div className="eventButtons">

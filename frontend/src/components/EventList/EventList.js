@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios"
 
 import EventComponent from "../EventInfo/EventInfo";
+import { getToken } from "../../authentication/auth";
 
 class EventList extends React.Component {
     state = {
@@ -9,7 +10,12 @@ class EventList extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/events/')
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: getToken(),
+            'EventType': 'all'
+        }
+        axios.get('http://127.0.0.1:8000/api/myevents/')
             .then(response => {
                 this.setState({
                     events: response.data

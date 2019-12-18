@@ -1,5 +1,7 @@
 from rest_framework import viewsets
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from events.models import Event
 from .serializers import EventSerializer
 
@@ -10,3 +12,40 @@ class EventViewSet(viewsets.ModelViewSet):
     """
     serializer_class = EventSerializer
     queryset = Event.objects.all()
+
+
+class InterestedGoingView(APIView):
+    queryset = Event.objects.all()
+
+
+class MyEventsView(APIView):
+    queryset = Event.objects.all()
+
+    def get(self, request):
+        def myEvents(user):
+            return user.eventsCreated.all()
+
+        def interested(user):
+            return user.interested.all()
+
+        def going(user):
+            return user.going.all()
+
+        def allMyEvents(user):
+            going = user.going.all()
+            interested = user.interested.all()
+            created = user.eventsCreated.all()
+            return going.union(interested, created).order_by('date', 'startTime').distinct()
+
+        user = Token.objects.get(key=request.headers['Authorization']).user
+        events = {
+            'created': myEvents(user),
+            'interested': interested(user),
+            'going': going(user),
+            'all': allMyEvents(user)
+        }[request.headers['EventType']]
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass

@@ -12,9 +12,60 @@ import "./ProfilePage.css";
 import MyEvents from "../../components/MyEvents/MyEvents";
 import MyEventInstance from "../../components/MyEventsInstance/MyEventInstance";
 
+import axios from "axios"
+import { getToken } from "../../authentication/auth.js"
+
 class ProfilePage extends React.Component {
+  state = {
+    myEvents: [],
+    interestedEvents: [],
+    goingEvents: [],
+  }
+
+
   componentDidMount() {
     document.title = "Profile | GoOut";
+
+    // get my events
+    axios.defaults.headers = {
+      'Content-Type': 'application/json',
+      Authorization: getToken(),
+      'EventType': 'created'
+    }
+    axios.get('http://127.0.0.1:8000/api/myevents/')
+    .then(response => {
+        this.setState({
+          ...this.state,
+          myEvents: response.data
+        })
+    })
+    axios.defaults.headers = {
+      'Content-Type': 'application/json',
+      Authorization: getToken(),
+      'EventType': 'going'
+    }
+    // get events user is going to
+    axios.get('http://127.0.0.1:8000/api/myevents/')
+    .then(response => {
+        this.setState({
+          ...this.state,
+          goingEvents: response.data
+        })
+    })
+    axios.defaults.headers = {
+      'Content-Type': 'application/json',
+      Authorization: getToken(),
+      'EventType': 'interested'
+    }
+    // get events user is interested in
+    axios.get('http://127.0.0.1:8000/api/myevents/')
+    .then(response => {
+        this.setState({
+          ...this.state,
+          interestedEvents: response.data
+        })
+    })
+    
   }
 
   render() {
@@ -43,75 +94,40 @@ class ProfilePage extends React.Component {
 
             <TabPanel>
               <MyEvents section="Your events" />
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />{" "}
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />{" "}
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />{" "}
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />{" "}
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />
+              {this.state.myEvents.map(event => {
+                return <MyEventInstance
+                        title={event.name}
+                        image="Pat"
+                        location={event.location}
+                        date={event.date}
+                        time={event.startTime + "-" + event.endTime}
+                      />
+              })}
+              
             </TabPanel>
             <TabPanel>
               <MyEvents section="You are going to" />
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />
+              {this.state.goingEvents.map(event => {
+                return <MyEventInstance
+                        title={event.name}
+                        image="Pat"
+                        location={event.location}
+                        date={event.date}
+                        time={event.startTime + "-" + event.endTime}
+                      />
+              })}
             </TabPanel>
             <TabPanel>
               <MyEvents section="You are interested in" />
-              <MyEventInstance
-                title="The first test event"
-                image="Pat"
-                location="Pleinlaan 2, 1050 Elsene"
-                date="November 30"
-                time="14:00-23:00"
-              />
+              {this.state.interestedEvents.map(event => {
+                return <MyEventInstance
+                        title={event.name}
+                        image="Pat"
+                        location={event.location}
+                        date={event.date}
+                        time={event.startTime + "-" + event.endTime}
+                      />
+              })}
             </TabPanel>
           </Tabs>
         </div>

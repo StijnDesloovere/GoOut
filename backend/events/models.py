@@ -27,7 +27,8 @@ class Event(models.Model):
     category = models.CharField(
         max_length=2, choices=CATEGORY_CHOICES, default="OT")
 
-    #creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    creator = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=1, related_name='eventsCreated')
 
     date = models.DateField(default=datetime.date.today)
     startTime = models.TimeField(default=datetime.time)
@@ -39,8 +40,9 @@ class Event(models.Model):
     long = models.DecimalField(
         max_digits=15, decimal_places=11, blank=True, null=True)
 
-    going = models.ManyToManyField(User, related_name='going')
-    interested = models.ManyToManyField(User, related_name='interested')
+    going = models.ManyToManyField(User, related_name='going', blank=True)
+    interested = models.ManyToManyField(
+        User, related_name='interested', blank=True)
 
     # TODO make sure saving images is supported
     #image = models.ImageField()

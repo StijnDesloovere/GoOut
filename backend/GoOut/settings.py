@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+from corsheaders.defaults import default_headers
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -151,6 +152,11 @@ REST_FRAMEWORK = {
 
 # Corse header settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'EventType',
+]
 
 # Authentication settings
 ACCOUNT_EMAIL_REQUIRED = True
