@@ -7,7 +7,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
     path('api/events/', include('events.api.urls')),
-    path('api/interestedgoing/', views.InterestedGoingView.as_view()),
     path('api/myevents/', views.MyEventsView.as_view()),
     path('api/users/', include('users.api.urls')),
     path('api/myprofile/', userViews.SpecificUserView.as_view()),

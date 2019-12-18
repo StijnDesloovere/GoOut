@@ -96,11 +96,13 @@ class ProfilePage extends React.Component {
               <MyEvents section="Your events" />
               {this.state.myEvents.map(event => {
                 return <MyEventInstance
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
                         date={event.date}
                         time={event.startTime + "-" + event.endTime}
+                        deletable={true}
                       />
               })}
               
@@ -109,11 +111,13 @@ class ProfilePage extends React.Component {
               <MyEvents section="You are going to" />
               {this.state.goingEvents.map(event => {
                 return <MyEventInstance
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
                         date={event.date}
                         time={event.startTime + "-" + event.endTime}
+                        deletable={false}
                       />
               })}
             </TabPanel>
@@ -121,11 +125,13 @@ class ProfilePage extends React.Component {
               <MyEvents section="You are interested in" />
               {this.state.interestedEvents.map(event => {
                 return <MyEventInstance
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
                         date={event.date}
                         time={event.startTime + "-" + event.endTime}
+                        deletable={false}
                       />
               })}
             </TabPanel>

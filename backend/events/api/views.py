@@ -1,20 +1,20 @@
-from rest_framework import viewsets
+from drf_custom_viewsets.viewsets import CustomSerializerViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.authentication import TokenAuthentication
 from events.models import Event
-from .serializers import EventSerializer
+from .serializers import EventSerializer, EventPostSerializer
 
 
-class EventViewSet(viewsets.ModelViewSet):
+class EventViewSet(CustomSerializerViewSet):
     """
     A viewset for viewing and editing Event instances.
     """
     serializer_class = EventSerializer
-    queryset = Event.objects.all()
-
-
-class InterestedGoingView(APIView):
+    custom_serializer_classes = {
+        'create': EventPostSerializer
+    }
     queryset = Event.objects.all()
 
 

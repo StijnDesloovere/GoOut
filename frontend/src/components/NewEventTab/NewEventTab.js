@@ -1,6 +1,7 @@
 import React from "react";
 import "./NewEventTab.css";
 import axios from "axios";
+import { getToken } from "../../authentication/auth";
 
 const initialState = {
   eventName: "",
@@ -54,24 +55,35 @@ class NewEventBar extends React.Component {
   /*Validate the form. Either display the correct error messages or send the data*/
   handleSubmit = event => {
     event.preventDefault();
+    event.persist();
 
     const valid = this.validate();
 
-    console.log(valid);
-    console.log(this.state.eventName);
-
     if (valid) {
-      // Send a post request to the server
-      axios.post('http://127.0.0.1:8000/api/events/', {
-        name: event.target.elements.eventName.value,
-        description: event.target.elements.description.value,
-        category: event.target.elements.eventCategory.value,
-        date: event.target.elements.date.value,
-        startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
-        endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
-        location: event.target.elements.eventLocation.value
-      })
-      this.setState(initialState);
+      let user = {}
+
+      axios.defaults.headers = {
+        Authorization: getToken()
+      }
+      axios.get('http://127.0.0.1:8000/api/myprofile/')
+        .then(response => {
+          user = response.data.user
+        })
+        .then(() => {
+          // Send a post request to the server
+          axios.post('http://127.0.0.1:8000/api/events/', {
+            name: event.target.elements.eventName.value,
+            creator: user.id,
+            description: event.target.elements.description.value,
+            category: event.target.elements.eventCategory.value,
+            date: event.target.elements.date.value,
+            startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
+            endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
+            location: event.target.elements.eventLocation.value
+          })})
+        .then(() => {
+          super.setState(initialState)
+        })
     }
   };
 
@@ -119,7 +131,7 @@ class NewEventBar extends React.Component {
                     <b>Event category</b>
                   </p>
                   <select id="eventCategory">
-                    <option value="PA" selected="">Party</option>
+                    <option value="PA" defaultValue="">Party</option>
                     <option value="CO">Concert</option>
                     <option value="CF">Conference</option>
                     <option value="FF">Food Festival</option>
@@ -141,7 +153,7 @@ class NewEventBar extends React.Component {
                     <b>Date</b>
                   </p>
                   <input
-                    type="Date"
+                    type="date"
                     id="date"
                     value={this.state.date || ""}
                     onChange={this.handleInputChanges}

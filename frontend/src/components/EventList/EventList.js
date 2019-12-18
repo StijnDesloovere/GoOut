@@ -11,7 +11,6 @@ class EventList extends React.Component {
 
     componentDidMount() {
         axios.defaults.headers = {
-            'Content-Type': 'application/json',
             Authorization: getToken(),
             'EventType': 'all'
         }
@@ -20,8 +19,7 @@ class EventList extends React.Component {
                 this.setState({
                     events: response.data
                 })
-            }
-            )
+            })
     }
 
     render() {
@@ -29,9 +27,9 @@ class EventList extends React.Component {
             <>
                 {this.state.events.map((data, i) => (
                     <EventComponent
-                        key={i}
+                        key={data.id}
                         title={data.name}
-                        creator="PATRICK"
+                        creator={data.creator.first_name + " " + data.creator.last_name}
                         eventType={data.category}
                         image="Pat"
                         location={data.location}

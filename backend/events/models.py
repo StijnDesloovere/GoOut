@@ -34,7 +34,7 @@ class Event(models.Model):
     startTime = models.TimeField(default=datetime.time)
     endTime = models.TimeField(default=datetime.time)
 
-    location = models.CharField(max_length=255)
+    location = models.CharField(max_length=255, blank=True)
     lat = models.DecimalField(
         max_digits=15, decimal_places=11, blank=True, null=True)
     long = models.DecimalField(

@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popup from "reactjs-popup"; //Using the package reactjs-popup from https://www.npmjs.com/package/reactjs-popup
 import "./MyEventInstance.css";
+import { getToken } from "../../authentication/auth";
+import axios from "axios"
 
 const contentStyle = {
   maxWidth: "50%",
@@ -62,6 +64,10 @@ class MyEventInstance extends React.Component {
                 <div className="deletePopupButtons">
                   <button
                     onClick={() => {
+                      axios.defaults.headers = {
+                        Authorization: getToken()
+                      }
+                      axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
                       close();
                     }}
                   >
