@@ -101,7 +101,7 @@ class ProfilePage extends React.Component {
                         image="Pat"
                         location={event.location}
                         date={event.date}
-                        time={event.startTime + "-" + event.endTime}
+                        time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
                         deletable={true}
                       />
               })}
@@ -116,7 +116,7 @@ class ProfilePage extends React.Component {
                         image="Pat"
                         location={event.location}
                         date={event.date}
-                        time={event.startTime + "-" + event.endTime}
+                        time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
                         deletable={false}
                       />
               })}
@@ -130,7 +130,7 @@ class ProfilePage extends React.Component {
                         image="Pat"
                         location={event.location}
                         date={event.date}
-                        time={event.startTime + "-" + event.endTime}
+                        time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
                         deletable={false}
                       />
               })}

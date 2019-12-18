@@ -41,50 +41,51 @@ class MyEventInstance extends React.Component {
             <p className="location">{this.props.location}</p>
           </div>
         </div>
-        <div className="removeButtonComponent">
-          <Popup
-            modal
-            contentStyle={contentStyle}
-            trigger={
-              <button className="removeButton">
-                <img
-                  classname="trashCanButton"
-                  src={require("../../images/trashCan.png")}
-                  alt=""
-                />
-              </button>
-            }
-          >
-            {close => (
-              <div className="deleteEventPopup">
-                <div className="deletePopupHeader">Delete event</div>
-                <div className="deletePopupMessage">
-                  Are you sure you want to remove this event?
+        {this.props.deletable ? 
+          <div className="removeButtonComponent">
+            <Popup
+              modal
+              contentStyle={contentStyle}
+              trigger={
+                <button className="removeButton">
+                  <img
+                    classname="trashCanButton"
+                    src={require("../../images/trashCan.png")}
+                    alt=""
+                  />
+                </button>
+              }
+            >
+              {close => (
+                <div className="deleteEventPopup">
+                  <div className="deletePopupHeader">Delete event</div>
+                  <div className="deletePopupMessage">
+                    Are you sure you want to remove this event?
+                  </div>
+                  <div className="deletePopupButtons">
+                    <button
+                      onClick={() => {
+                        axios.defaults.headers = {
+                          Authorization: getToken()
+                        }
+                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
+                        close();
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      onClick={() => {
+                        close();
+                      }}
+                    >
+                      No
+                    </button>
+                  </div>
                 </div>
-                <div className="deletePopupButtons">
-                  <button
-                    onClick={() => {
-                      axios.defaults.headers = {
-                        Authorization: getToken()
-                      }
-                      axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
-                      close();
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => {
-                      close();
-                    }}
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
-            )}
-          </Popup>
-        </div>
+              )}
+            </Popup>
+          </div> : ""}
       </div>
     );
   }
