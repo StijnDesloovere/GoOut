@@ -17,3 +17,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('user', 'birthDate', 'gender',
                   'phoneNumber', 'location', 'following')
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('__all__')

@@ -5,18 +5,24 @@ from rest_framework.authtoken.models import Token
 
 from django.contrib.auth.models import User
 from users.models import UserProfile
-from .serializers import UserProfileSerializer, UserSerializer
+from .serializers import UserProfileSerializer, UserSerializer, ProfileSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    A viewset for viewing and editing Event instances.
-    """
-    serializer_class = UserProfileSerializer
+class UserView(APIView):
+    queryset = User.objects.all()
+
+    def get(self, request):
+        user = Token.objects.get(key=request.headers['Authorization']).user
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
     queryset = UserProfile.objects.all()
 
 
-class SpecificUserView(APIView):
+class MyProfileView(APIView):
     queryset = User.objects.all()
 
     def get(self, request):
@@ -24,9 +30,3 @@ class SpecificUserView(APIView):
         userProfile = UserProfile.objects.get(user=user.id)
         serializedUser = UserProfileSerializer(userProfile)
         return Response(serializedUser.data)
-
-    def post(self, request):
-        serializer = UserProfileSerializer(request.data)
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data)

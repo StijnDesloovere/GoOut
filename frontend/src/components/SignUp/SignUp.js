@@ -28,7 +28,6 @@ class SignUpWindow extends React.Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-    console.log(this.state)
   };
 
   /*Check if the form is filled in correctly*/
@@ -89,8 +88,9 @@ class SignUpWindow extends React.Component {
   };
 
   // Send a post request to the server to register the user
-  authenticateSignUp(email, password1, password2) {
+  authenticateSignUp(email, password1, password2, firstName, lastName, birthDate, gender, phoneNumber, location) {
     axios.post("http://127.0.0.1:8000/rest-auth/registration/", {
+      username: email,
       email: email,
       password1: password1,
       password2: password2
@@ -108,16 +108,24 @@ class SignUpWindow extends React.Component {
     })
     .then(ErrorHappened => {
       if(!ErrorHappened) {
+        let userID = null
         axios.defaults.headers = {
           Authorization: getToken()
         }
-        axios.post('http://127.0.0.1:8000/api/myprofile/', {
-          birthDate: this.state.birthDate, 
-          gender: this.state.gender,
-          phoneNumber: this.state.phoneNumber,
-          location: this.state.location,
-        })
-        this.props.history.push("/home");
+        axios.get('http://127.0.0.1:8000/api/myuser/')
+          .then(response => {
+            userID = response.data.id
+          })
+          .then(() => {
+            axios.post('http://127.0.0.1:8000/api/profiles/', {
+              user: userID,
+              birthDate: birthDate, 
+              gender: gender,
+              phoneNumber: phoneNumber,
+              location: location,
+            })
+            this.props.history.push("/home");
+          })
       }
     })
   }
@@ -129,7 +137,10 @@ class SignUpWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword);
+      this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword,
+        this.state.firstName, this.state.lastName,
+        event.target.elements.birthDate.value, event.target.elements.gender.value, 
+        event.target.elements.phoneNumber.value, event.target.elements.location.value);
     }
   };
 
@@ -194,12 +205,13 @@ class SignUpWindow extends React.Component {
               <b>Gender</b>
             </p>
           </div>
-          <div className="radiocontainer">
+          <div className="radiocontainer" id="gender">
             <input
               className="inputButton"
               id="male"
               name="gender"
               type="radio"
+              value="M"
               defaultChecked
             />
             <label className="male">Male</label>
@@ -208,6 +220,7 @@ class SignUpWindow extends React.Component {
               id="female"
               name="gender"
               type="radio"
+              value="F"
             />
             <label className="female">Female</label>
           </div>
