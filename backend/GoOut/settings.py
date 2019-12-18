@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    'events'
+    'events',
+    'users'
 ]
 
 SITE_ID = 1
@@ -142,8 +143,17 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 # Corse header settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Authentication settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_USERNAME_REQUIRED = False

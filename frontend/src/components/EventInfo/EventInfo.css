@@ -76,6 +76,10 @@
 
 .rightText p {
   margin-left: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
 
 /* friends going/friends interested */
@@ -135,4 +139,26 @@
   height: 23px;
   margin-right: 10px;
   filter: invert(100%);
+}
+
+@media screen and (max-width: 481px) {
+  .eventInfoBlock {
+    width: 100%;
+  }
+
+  .image img {
+    display: block;
+    width: 100px;
+    margin-top: 10px;
+  }
+
+  .rightText p {
+    font-size: 12px;
+  }
+
+  .eventButtons button {
+    font-size: 15px;
+
+    width: 50%;
+  }
 }

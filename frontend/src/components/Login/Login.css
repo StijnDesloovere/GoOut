@@ -6,9 +6,8 @@
 }
 
 .header {
-  margin-top: 10%;
-  font-family: "Open Sans", sans-serif;
-  font-size: 30px;
+  margin-top: 5%;
+  margin-bottom: -30px;
 }
 /*error message*/
 .errorLogin {
@@ -93,4 +92,8 @@
 .lButton:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+#loginError {
+  margin-top: 20px;
 }

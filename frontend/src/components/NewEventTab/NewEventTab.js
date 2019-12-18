@@ -16,7 +16,6 @@ class NewEventBar extends React.Component {
 
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -123,6 +122,7 @@ class NewEventBar extends React.Component {
                     <option value="PA" selected="">Party</option>
                     <option value="CO">Concert</option>
                     <option value="CF">Conference</option>
+                    <option value="FF">Food Festival</option>
                     <option value="CM">Competition</option>
                     <option value="MU">Meetup</option>
                     <option value="SE">Sporting Event</option>
@@ -202,7 +202,6 @@ class NewEventBar extends React.Component {
                   <b>Description</b>
                 </p>
                 <textarea
-                  maxLength="2000"
                   id="description"
                   value={this.state.description || ""}
                   onChange={this.handleInputChanges}
