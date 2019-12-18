@@ -49,7 +49,7 @@ class MyEventInstance extends React.Component {
               trigger={
                 <button className="removeButton">
                   <img
-                    classname="trashCanButton"
+                    className="trashCanButton"
                     src={require("../../images/trashCan.png")}
                     alt=""
                   />
@@ -68,7 +68,7 @@ class MyEventInstance extends React.Component {
                         axios.defaults.headers = {
                           Authorization: getToken()
                         }
-                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
+                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.key}/`)
                         close();
                       }}
                     >

@@ -2,6 +2,7 @@ import React from "react";
 import "./SignUp.css";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import { getToken } from "../../authentication/auth"
 
 const initialState = {
   firstName: "",
@@ -27,6 +28,7 @@ class SignUpWindow extends React.Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+    console.log(this.state)
   };
 
   /*Check if the form is filled in correctly*/
@@ -106,6 +108,15 @@ class SignUpWindow extends React.Component {
     })
     .then(ErrorHappened => {
       if(!ErrorHappened) {
+        axios.defaults.headers = {
+          Authorization: getToken()
+        }
+        axios.post('http://127.0.0.1:8000/api/myprofile/', {
+          birthDate: this.state.birthDate, 
+          gender: this.state.gender,
+          phoneNumber: this.state.phoneNumber,
+          location: this.state.location,
+        })
         this.props.history.push("/home");
       }
     })

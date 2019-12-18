@@ -28,6 +28,16 @@ class ProfilePage extends React.Component {
 
     // get my events
     axios.defaults.headers = {
+      Authorization: getToken()
+    }
+    axios.get('http://127.0.0.1:8000/api/myprofile/')
+      .then(response => {
+        this.setState({
+          ...this.state,
+          profile: response.data
+        })
+      })
+    axios.defaults.headers = {
       'Content-Type': 'application/json',
       Authorization: getToken(),
       'EventType': 'created'
@@ -73,10 +83,10 @@ class ProfilePage extends React.Component {
       <div>
         <MenuBar />
         <Profile
-          name="Sponge the Bob"
+          name={typeof this.state.profile !== 'undefined' ? this.state.profile.user.first_name + " " + this.state.profile.user.last_name : ""}
           image="Pfp"
-          followers={69}
-          following={420}
+          followers={0}
+          following={typeof this.state.profile !== 'undefined' ? this.state.profile.following.length : 0}
         />
         <div className="PFcontent">
           <Tabs>
@@ -96,7 +106,7 @@ class ProfilePage extends React.Component {
               <MyEvents section="Your events" />
               {this.state.myEvents.map(event => {
                 return <MyEventInstance
-                        id={event.id}
+                        key={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
@@ -111,7 +121,7 @@ class ProfilePage extends React.Component {
               <MyEvents section="You are going to" />
               {this.state.goingEvents.map(event => {
                 return <MyEventInstance
-                        id={event.id}
+                        key={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
@@ -125,7 +135,7 @@ class ProfilePage extends React.Component {
               <MyEvents section="You are interested in" />
               {this.state.interestedEvents.map(event => {
                 return <MyEventInstance
-                        id={event.id}
+                        key={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}

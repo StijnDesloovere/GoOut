@@ -25,5 +25,8 @@ class SpecificUserView(APIView):
         serializedUser = UserProfileSerializer(userProfile)
         return Response(serializedUser.data)
 
-    def post(self):
-        pass
+    def post(self, request):
+        serializer = UserProfileSerializer(request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data)

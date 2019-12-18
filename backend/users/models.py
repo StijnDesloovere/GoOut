@@ -14,7 +14,8 @@ class UserProfile(models.Model):
     phoneNumber = models.CharField(max_length=24)
     location = models.CharField(max_length=255)
 
-    following = models.ManyToManyField("self", 'followers')
+    following = models.ManyToManyField(
+        "self", related_name='followers', blank=True)
 
     def __str__(self):
         return self.user.email
