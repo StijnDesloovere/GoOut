@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 
+
 # Model for an event
-
-
 class Event(models.Model):
     CATEGORY_CHOICES = [  # All types of event categories
         ("PA", "Party"),
@@ -44,10 +43,7 @@ class Event(models.Model):
     interested = models.ManyToManyField(
         User, related_name='interested', blank=True)
 
-    # TODO make sure saving images is supported
-    #image = models.ImageField()
-
-    # TODO make sure people going/interested is implemented
+    image = models.ImageField(upload_to='pictures/', blank=True, null=True)
 
     def __str__(self):
         return self.name
