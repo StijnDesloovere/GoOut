@@ -84,7 +84,7 @@ class ProfilePage extends React.Component {
         <MenuBar />
         <Profile
           name={typeof this.state.profile !== 'undefined' ? this.state.profile.user.first_name + " " + this.state.profile.user.last_name : ""}
-          image="Pfp"
+          image="Logo.png"
           followers={0}
           following={typeof this.state.profile !== 'undefined' ? this.state.profile.following.length : 0}
         />

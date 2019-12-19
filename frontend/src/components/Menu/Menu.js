@@ -60,7 +60,7 @@ class MenuBar extends React.Component {
           <button className="accountButton">
             <img
               className="profilePicture"
-              src={require("../../images/Pfp.jpg")}
+              src={require("../../images/Logo.png")}
               alt=""
             />
             <div className="accountButtonText">
