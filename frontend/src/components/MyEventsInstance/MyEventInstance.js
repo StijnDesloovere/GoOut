@@ -4,6 +4,7 @@ import Popup from "reactjs-popup"; //Using the package reactjs-popup from https:
 import "./MyEventInstance.css";
 import { getToken } from "../../authentication/auth";
 import axios from "axios"
+import { Link } from "react-router-dom";
 
 const contentStyle = {
   maxWidth: "50%",
@@ -21,7 +22,9 @@ class MyEventInstance extends React.Component {
         </div>
         <div className="compactEventDetails">
           <p>
-            <b>{this.props.title}</b>
+            <Link to={`/event/${this.props.id}`} style={{ textDecoration: 'none', color: 'black'}}>
+              <b>{this.props.title}</b>
+            </Link>
           </p>
           <div className="locationDate">
             <img

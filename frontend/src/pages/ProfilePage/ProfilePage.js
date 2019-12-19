@@ -107,6 +107,7 @@ class ProfilePage extends React.Component {
               {this.state.myEvents.map(event => {
                 return <MyEventInstance
                         key={event.id}
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
@@ -122,6 +123,7 @@ class ProfilePage extends React.Component {
               {this.state.goingEvents.map(event => {
                 return <MyEventInstance
                         key={event.id}
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
@@ -136,6 +138,7 @@ class ProfilePage extends React.Component {
               {this.state.interestedEvents.map(event => {
                 return <MyEventInstance
                         key={event.id}
+                        id={event.id}
                         title={event.name}
                         image="Pat"
                         location={event.location}
