@@ -108,21 +108,26 @@ class SignUpWindow extends React.Component {
     })
     .then(ErrorHappened => {
       if(!ErrorHappened) {
-        let userID = null
+        let user = {}
         axios.defaults.headers = {
           Authorization: getToken()
         }
         axios.get('http://127.0.0.1:8000/api/myuser/')
           .then(response => {
-            userID = response.data.id
+            user = response.data
           })
           .then(() => {
             axios.post('http://127.0.0.1:8000/api/profiles/', {
-              user: userID,
+              user: user.id,
               birthDate: birthDate, 
               gender: gender,
               phoneNumber: phoneNumber,
               location: location,
+            })
+            axios.put('http://127.0.0.1:8000/api/myuser/', {
+              ...user,
+              first_name: firstName,
+              last_name: lastName
             })
             this.props.history.push("/home");
           })
