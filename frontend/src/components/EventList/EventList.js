@@ -27,7 +27,8 @@ class EventList extends React.Component {
             <>
                 {this.state.events.map((data, i) => (
                     <EventComponent
-                        key={data.id}
+                        key={i}
+                        id={data.id}
                         title={data.name}
                         creator={data.creator.first_name + " " + data.creator.last_name}
                         eventType={data.category}

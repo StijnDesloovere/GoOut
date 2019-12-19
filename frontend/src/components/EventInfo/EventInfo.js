@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./EventInfo.css";
 import EVENTTYPE_CHOICES from "./EventCategories"
+import { Link } from "react-router-dom";
 
 class EventComponent extends React.Component {
   render() {
@@ -9,7 +10,9 @@ class EventComponent extends React.Component {
       <div className="eventInfoBlock">
         <div className="title">
           <p className="header">
-            <b>{this.props.title}</b>
+            <Link to={`/event/${this.props.id}`} style={{ textDecoration: 'none', color: 'white'}}>
+              <b>{this.props.title}</b>
+            </Link>
           </p>
         </div>
         <div className="creatorInfo">
