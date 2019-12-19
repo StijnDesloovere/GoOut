@@ -71,7 +71,7 @@ class MyEventInstance extends React.Component {
                         axios.defaults.headers = {
                           Authorization: getToken()
                         }
-                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.key}/`)
+                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
                         close();
                       }}
                     >
