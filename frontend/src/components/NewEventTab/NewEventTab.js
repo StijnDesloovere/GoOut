@@ -70,8 +70,11 @@ class NewEventBar extends React.Component {
           user = response.data.user
         })
         .then(() => {
-          // Send a post request to the server
-          axios.post('http://127.0.0.1:8000/api/events/', {
+          let formData = new FormData();
+          if(event.target.elements.image.files.length) {
+            formData.append("image", event.target.elements.image.files[0]);
+          }
+          let eventData = {
             name: event.target.elements.eventName.value,
             creator: user.id,
             description: event.target.elements.description.value,
@@ -80,6 +83,15 @@ class NewEventBar extends React.Component {
             startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
             endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
             location: event.target.elements.eventLocation.value
+          }
+          for(var propName in eventData){
+            formData.append(propName, eventData[propName])
+          }
+          // Send a post request to the server
+          axios.post('http://127.0.0.1:8000/api/events/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
           })})
         .then(() => {
           super.setState(initialState)
@@ -164,7 +176,7 @@ class NewEventBar extends React.Component {
                   <p>
                     <b>Image</b>
                   </p>
-                  <input type="file"></input>
+                  <input type="file" id="image"></input>
                 </div>
               </div>
               <div className="thirdRow">

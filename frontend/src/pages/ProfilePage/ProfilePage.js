@@ -26,7 +26,7 @@ class ProfilePage extends React.Component {
   componentDidMount() {
     document.title = "Profile | GoOut";
 
-    // get my events
+    // get my profle
     axios.defaults.headers = {
       Authorization: getToken()
     }
@@ -37,6 +37,7 @@ class ProfilePage extends React.Component {
           profile: response.data
         })
       })
+    // get my events
     axios.defaults.headers = {
       'Content-Type': 'application/json',
       Authorization: getToken(),
@@ -109,7 +110,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Logo.png"
+                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -125,7 +126,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Logo.png"
+                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -140,7 +141,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Logo.png"
+                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}

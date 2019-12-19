@@ -7,7 +7,7 @@ import axios from "axios";
 class DetailedEvent extends React.Component {
 
   state = {
-    event: {}
+    event: {},
   }
 
   componentDidMount() {
@@ -19,6 +19,7 @@ class DetailedEvent extends React.Component {
           this.setState({
             event: result.data
           })
+          console.log(result.image)
         })
   }
   render() {
@@ -27,9 +28,9 @@ class DetailedEvent extends React.Component {
         <MenuBar />
         <DetailedEventInfoComponent
           title={this.state.event.name}
-          creator="PATRICK"
+          creator={this.state.event.creator ? this.state.event.creator.first_name + " " + this.state.event.creator.last_name : ""}
           eventType={EVENTTYPE_CHOICES[this.state.event.category]}
-          image="Logo.png"
+          image={this.state.event.image ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + this.state.event.image.substring(22)) : require(`../images/Logo.png`)}
           location={this.state.event.location}
           date={this.state.event.date}
           time={((this.state.event.hasOwnProperty('startTime')) ? this.state.event.startTime.substring(0, this.state.event.startTime.length - 3) : "")

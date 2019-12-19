@@ -1,17 +1,39 @@
 import React from "react";
+import axios from 'axios';
 
 import "./Account.css";
+import { getToken } from "../../authentication/auth";
 
 const initialState = {
   firstName: "",
   lastName: "",
   birthDate: "",
+  location: "",
+  phoneNumber: "",
   firstNameError: "",
   lastNameError: "",
   birthDateError: ""
 };
 
 class Account extends React.Component {
+  componentDidMount() {
+    axios.defaults.headers = {
+      Authorization: getToken()
+    }
+    axios.get('http://127.0.0.1:8000/api/myprofile/')
+      .then(response => {
+        let profile = response.data
+        this.setState({
+          ...this.state,
+          firstName: profile.user.first_name,
+          lastName: profile.user.last_name,
+          birthDate: profile.birthDate,
+          location: profile.location,
+          phoneNumber: profile.phoneNumber
+        })
+      })
+  }
+
   state = initialState;
   /* Update the state with the currect value*/
   handleInputChanges = event => {
@@ -57,7 +79,6 @@ class Account extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      console.log(this.state);
       this.setState(initialState);
     }
   };
@@ -101,6 +122,7 @@ class Account extends React.Component {
                   type="text"
                   id="firstName"
                   onChange={this.handleInputChanges}
+                  value={this.state.firstName}
                 />
                 <div className="error">{this.state.firstNameError}</div>
                 <p className="lastName">
@@ -110,6 +132,7 @@ class Account extends React.Component {
                   type="text"
                   id="lastName"
                   onChange={this.handleInputChanges}
+                  value={this.state.lastName}
                 />
                 <div className="error">{this.state.lastNameError}</div>
                 <p className="birthDate">
@@ -119,6 +142,7 @@ class Account extends React.Component {
                   type="date"
                   id="birthDate"
                   onChange={this.handleInputChanges}
+                  value={this.state.birthDate}
                 />
                 <div className="error">{this.state.birthDateError}</div>
 
@@ -147,11 +171,21 @@ class Account extends React.Component {
                 <p className="location">
                   <b>Location</b>
                 </p>
-                <input type="text" id="location" />
+                <input 
+                  type="text" 
+                  id="location" 
+                  onChange={this.handleInputChanges}
+                  value={this.state.location}
+                />
                 <p className="phoneNumber">
                   <b>Phone number</b>
                 </p>
-                <input type="text" id="phoneNumber" />
+                <input 
+                  type="text" 
+                  id="phoneNumber"
+                  onChange={this.handleInputChanges}
+                  value={this.state.phoneNumber}
+                />
               </div>
             </div>
             <div className="confirmChangesButton">

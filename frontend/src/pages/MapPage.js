@@ -65,9 +65,13 @@ class LocationMap extends React.Component {
 
   render() {
     return(
+    <div>
       <div>
-      <MenuBar/>
-      <div id = 'map' style={divStyle}></div>
+        <MenuBar/>
+      </div>
+      <div style={{paddingTop: 100}}>
+       <div id = 'map' style={divStyle}></div>
+      </div>
       <button onClick={this.getCurrentLocation.bind(this)}>Get Current Position</button>
       <div id="currentPosition"></div>
     </div>

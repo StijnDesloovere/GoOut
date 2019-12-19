@@ -18,7 +18,7 @@ class MyEventInstance extends React.Component {
     return (
       <div className="myEventInstanceObject">
         <div className="eventImage">
-          <img src={require(`../../images/${this.props.image}`)} alt="" />
+          <img src={this.props.image} alt="" />
         </div>
         <div className="compactEventDetails">
           <p>

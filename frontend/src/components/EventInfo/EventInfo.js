@@ -40,7 +40,7 @@ class EventComponent extends React.Component {
         </div>
         <div className="imageDescBox">
           <div className="image">
-            <img src={require(`../../images/${this.props.image}`)} alt="" />
+            <img src={this.props.image} alt=""/>
           </div>
           <div className="rightText">
             <p className="description">{this.props.description}</p>
