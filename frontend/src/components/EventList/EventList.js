@@ -32,7 +32,7 @@ class EventList extends React.Component {
                         title={data.name}
                         creator={data.creator.first_name + " " + data.creator.last_name}
                         eventType={data.category}
-                        image="Pat"
+                        image="Logo.png"
                         location={data.location}
                         date={data.date}
                         startTime={data.startTime}

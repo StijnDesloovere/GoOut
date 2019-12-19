@@ -109,7 +109,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Pat"
+                        image="Logo.png"
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -125,7 +125,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Pat"
+                        image="Logo.png"
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -140,7 +140,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image="Pat"
+                        image="Logo.png"
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}

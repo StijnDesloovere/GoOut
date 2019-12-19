@@ -29,7 +29,7 @@ class DetailedEvent extends React.Component {
           title={this.state.event.name}
           creator="PATRICK"
           eventType={EVENTTYPE_CHOICES[this.state.event.category]}
-          image="Pat"
+          image="Logo.png"
           location={this.state.event.location}
           date={this.state.event.date}
           time={((this.state.event.hasOwnProperty('startTime')) ? this.state.event.startTime.substring(0, this.state.event.startTime.length - 3) : "")
