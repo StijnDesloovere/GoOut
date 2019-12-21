@@ -1,5 +1,5 @@
 from drf_custom_viewsets.viewsets import CustomSerializerViewSet
-from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authentication import TokenAuthentication
@@ -18,10 +18,11 @@ class EventViewSet(CustomSerializerViewSet):
     queryset = Event.objects.all()
 
 
-class MyEventsView(APIView):
+class MyEventsView(ListAPIView):
     queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
-    def get(self, request):
+    def get_queryset(self):
         def myEvents(user):
             return user.eventsCreated.all()
 
@@ -35,17 +36,14 @@ class MyEventsView(APIView):
             going = user.going.all()
             interested = user.interested.all()
             created = user.eventsCreated.all()
-            return going.union(interested, created).order_by('date', 'startTime').distinct()
+            return going.union(interested, created)
 
-        user = Token.objects.get(key=request.headers['Authorization']).user
+        user = Token.objects.get(
+            key=self.request.headers['Authorization']).user
         events = {
             'created': myEvents(user),
             'interested': interested(user),
             'going': going(user),
             'all': allMyEvents(user)
-        }[request.headers['EventType']]
-        serializer = EventSerializer(events, many=True)
-        return Response(serializer.data)
-
-    def post(self):
-        pass
+        }[self.request.headers['EventType']]
+        return events.order_by('date', 'startTime').distinct()

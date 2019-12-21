@@ -32,7 +32,7 @@ class EventList extends React.Component {
                         title={data.name}
                         creator={data.creator.first_name + " " + data.creator.last_name}
                         eventType={data.category}
-                        image={data.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + data.image.substring(1)) : require(`../../images/Logo.png`)}
+                        image={data.image ? data.image : require(`../../images/Logo.png`)}
                         location={data.location}
                         date={data.date}
                         startTime={data.startTime}

@@ -110,7 +110,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
+                        image={event.image ? event.image : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -126,7 +126,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
+                        image={event.image ? event.image : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
@@ -141,7 +141,7 @@ class ProfilePage extends React.Component {
                         key={event.id}
                         id={event.id}
                         title={event.name}
-                        image={event.image != null ? require('/Users/bram/Documents/3BA/Web Technologies/Project/GoOut/backend/' + event.image.substring(1)) : require(`../../images/Logo.png`)}
+                        image={event.image ? event.image : require(`../../images/Logo.png`)}
                         location={event.location}
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
