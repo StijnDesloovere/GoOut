@@ -8,6 +8,7 @@ const initialState = {
   firstName: "",
   lastName: "",
   birthDate: "",
+  gender: "",
   location: "",
   phoneNumber: "",
   firstNameError: "",
@@ -25,9 +26,11 @@ class Account extends React.Component {
         let profile = response.data
         this.setState({
           ...this.state,
+          id: profile.id,
           firstName: profile.user.first_name,
           lastName: profile.user.last_name,
           birthDate: profile.birthDate,
+          gender: profile.gender,
           location: profile.location,
           phoneNumber: profile.phoneNumber
         })
@@ -79,7 +82,16 @@ class Account extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      this.setState(initialState);
+      axios.patch(`http://127.0.0.1:8000/api/profiles/${this.state.id}/`, {
+        birthDate: this.state.birthDate, 
+        gender: this.state.gender,
+        phoneNumber: this.state.phoneNumber,
+        location: this.state.location,
+      })
+      axios.patch('http://127.0.0.1:8000/api/myuser/', {
+        first_name: this.state.firstName,
+        last_name: this.state.lastName
+      })
     }
   };
 
@@ -156,14 +168,25 @@ class Account extends React.Component {
                   id="male"
                   name="gender"
                   type="radio"
-                  defaultChecked
+                  value="M"
+                  onClick={()=>{this.setState({
+                    ...this.state,
+                    gender: "M"
+                  })}}
+                  checked={this.state.gender === "M" ? true : false}
                 />
                 <label className="male">Male</label>
-                <input
+                <input 
                   className="inputButtons"
                   id="female"
                   name="gender"
                   type="radio"
+                  value="F"
+                  onClick={()=>{this.setState({
+                    ...this.state,
+                    gender: "F"
+                  })}}
+                  checked={this.state.gender === "F" ? true : false}
                 />
                 <label className="female">Female</label>
               </div>

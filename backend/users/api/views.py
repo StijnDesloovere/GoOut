@@ -16,7 +16,7 @@ class UserView(APIView):
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-    def put(self, request):
+    def patch(self, request):
         user = Token.objects.get(key=request.headers['Authorization']).user
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
