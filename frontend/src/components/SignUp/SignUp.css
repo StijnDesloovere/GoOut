@@ -11,7 +11,9 @@ body {
 
 .header {
   margin-top: 50px;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .signUpFields p,

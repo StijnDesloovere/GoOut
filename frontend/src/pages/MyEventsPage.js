@@ -13,7 +13,7 @@ class myEvents extends React.Component {
         <MenuBar />
         <MyEvents />
         <MyEventInstance
-          title="The first test event"
+          title="Jellyfishing"
           image="Pat"
           location="Pleinlaan 2, 1050 Elsene"
           date="November 30"

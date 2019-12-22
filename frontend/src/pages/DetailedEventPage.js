@@ -11,7 +11,7 @@ class DetailedEvent extends React.Component {
       <div>
         <MenuBar />
         <DetailedEventInfoComponent
-          title="The first test event"
+          title="Jellyfishing"
           creator="Pat"
           eventType="Meetup"
           image="Pat"
