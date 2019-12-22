@@ -22,21 +22,7 @@ class ProfilePage extends React.Component {
     goingEvents: [],
   }
 
-
-  componentDidMount() {
-    document.title = "Profile | GoOut";
-
-    // get my profle
-    axios.defaults.headers = {
-      Authorization: getToken()
-    }
-    axios.get('http://127.0.0.1:8000/api/myprofile/')
-      .then(response => {
-        this.setState({
-          ...this.state,
-          profile: response.data
-        })
-      })
+  getEvents() {
     // get my events
     axios.defaults.headers = {
       'Content-Type': 'application/json',
@@ -76,7 +62,31 @@ class ProfilePage extends React.Component {
           interestedEvents: response.data
         })
     })
-    
+  }
+
+  componentDidMount() {
+    document.title = "Profile | GoOut";
+
+    // get my profle
+    axios.defaults.headers = {
+      Authorization: getToken()
+    }
+    axios.get('http://127.0.0.1:8000/api/myprofile/')
+      .then(response => {
+        this.setState({
+          ...this.state,
+          profile: response.data
+        })
+      })
+    this.getEvents();
+  }
+
+  onDelete(deletedEventID) {
+    this.setState({
+      myEvents: this.state.myEvents.filter((event) => { return event.id !== deletedEventID}),
+      interestedEvents: this.state.interestedEvents.filter((event) => { return event.id !== deletedEventID}),
+      goingEvents: this.state.goingEvents.filter((event) => { return event.id !== deletedEventID })
+    })
   }
 
   render() {
@@ -115,6 +125,7 @@ class ProfilePage extends React.Component {
                         date={event.date}
                         time={event.startTime.substring(0, event.startTime.length - 3) + "-" + event.endTime.substring(0, event.endTime.length - 3)}
                         deletable={true}
+                        onDelete={this.onDelete.bind(this)}
                       />
               })}
               

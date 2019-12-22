@@ -94,7 +94,8 @@ class NewEventBar extends React.Component {
             }
           })})
         .then(() => {
-          super.setState(initialState)
+          this.props.onEventCreation();
+          super.setState(initialState);
         })
     }
   };

@@ -76,6 +76,7 @@
 
 .rightText p {
   margin-left: 10px;
+  margin-right: 7px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 10;

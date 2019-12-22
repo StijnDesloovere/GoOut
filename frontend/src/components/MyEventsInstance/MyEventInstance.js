@@ -73,6 +73,7 @@ class MyEventInstance extends React.Component {
                         }
                         axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
                         close();
+                        this.props.onDelete(this.props.id);
                       }}
                     >
                       Yes
