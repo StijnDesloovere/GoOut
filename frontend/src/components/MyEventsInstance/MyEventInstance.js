@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popup from "reactjs-popup"; //Using the package reactjs-popup from https://www.npmjs.com/package/reactjs-popup
 import "./MyEventInstance.css";
+import { getToken } from "../../authentication/auth";
+import axios from "axios"
+import { Link } from "react-router-dom";
 
 const contentStyle = {
   maxWidth: "50%",
@@ -15,11 +18,13 @@ class MyEventInstance extends React.Component {
     return (
       <div className="myEventInstanceObject">
         <div className="eventImage">
-          <img src={require(`../../images/${this.props.image}.jpg`)} alt="" />
+          <img src={this.props.image} alt="" />
         </div>
         <div className="compactEventDetails">
           <p>
-            <b>{this.props.title}</b>
+            <Link to={`/event/${this.props.id}`} style={{ textDecoration: 'none', color: 'black'}}>
+              <b>{this.props.title}</b>
+            </Link>
           </p>
           <div className="locationDate">
             <img
@@ -39,46 +44,52 @@ class MyEventInstance extends React.Component {
             <p className="location">{this.props.location}</p>
           </div>
         </div>
-        <div className="removeButtonComponent">
-          <Popup
-            modal
-            contentStyle={contentStyle}
-            trigger={
-              <button className="removeButton">
-                <img
-                  classname="trashCanButton"
-                  src={require("../../images/trashCan.png")}
-                  alt=""
-                />
-              </button>
-            }
-          >
-            {close => (
-              <div className="deleteEventPopup">
-                <div className="deletePopupHeader">Delete event</div>
-                <div className="deletePopupMessage">
-                  Are you sure you want to remove this event?
+        {this.props.deletable ? 
+          <div className="removeButtonComponent">
+            <Popup
+              modal
+              contentStyle={contentStyle}
+              trigger={
+                <button className="removeButton">
+                  <img
+                    className="trashCanButton"
+                    src={require("../../images/trashCan.png")}
+                    alt=""
+                  />
+                </button>
+              }
+            >
+              {close => (
+                <div className="deleteEventPopup">
+                  <div className="deletePopupHeader">Delete event</div>
+                  <div className="deletePopupMessage">
+                    Are you sure you want to remove this event?
+                  </div>
+                  <div className="deletePopupButtons">
+                    <button
+                      onClick={() => {
+                        axios.defaults.headers = {
+                          Authorization: getToken()
+                        }
+                        axios.delete(`http://127.0.0.1:8000/api/events/${this.props.id}/`)
+                        close();
+                        this.props.onDelete(this.props.id);
+                      }}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      onClick={() => {
+                        close();
+                      }}
+                    >
+                      No
+                    </button>
+                  </div>
                 </div>
-                <div className="deletePopupButtons">
-                  <button
-                    onClick={() => {
-                      close();
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => {
-                      close();
-                    }}
-                  >
-                    No
-                  </button>
-                </div>
-              </div>
-            )}
-          </Popup>
-        </div>
+              )}
+            </Popup>
+          </div> : ""}
       </div>
     );
   }

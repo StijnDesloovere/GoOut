@@ -1,22 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./EventInfo.css";
-
-// Dictionary of all possible event types
-const EVENTTYPE_CHOICES = {
-  "PA": "Party",
-  "CO": "Concert",
-  "CF": "Conference",
-  "CM": "Competition",
-  "MU": "Meetup",
-  "SE": "Sporting Event",
-  "FE": "Festival",
-  "FI": "Film",
-  "TH": "Theater",
-  "CS": "Comedy Show",
-  "AE": "Art Exhibition",
-  "OT": "Other"
-}
+import EVENTTYPE_CHOICES from "./EventCategories"
+import { Link } from "react-router-dom";
 
 class EventComponent extends React.Component {
   render() {
@@ -24,7 +10,9 @@ class EventComponent extends React.Component {
       <div className="eventInfoBlock">
         <div className="title">
           <p className="header">
-            <b>{this.props.title}</b>
+            <Link to={`/event/${this.props.id}`} style={{ textDecoration: 'none', color: 'white'}}>
+              <b>{this.props.title}</b>
+            </Link>
           </p>
         </div>
         <div className="creatorInfo">
@@ -52,7 +40,7 @@ class EventComponent extends React.Component {
         </div>
         <div className="imageDescBox">
           <div className="image">
-            <img src={require(`../../images/${this.props.image}.jpg`)} alt="" />
+            <img src={this.props.image} alt=""/>
           </div>
           <div className="rightText">
             <p className="description">{this.props.description}</p>
@@ -64,10 +52,11 @@ class EventComponent extends React.Component {
             src={require("../../images/people.png")}
             alt=""
           ></img>
-          <p className="going">{this.props.friendsGoing} friends are going</p>
+          <p className="going"> 0 friends are going</p>
           <div className="line"></div>
           <p className="interested">
-            {this.props.friendsInterested} friends are interested
+            
+          0 friends are interested
           </p>
         </div>
         <div className="eventButtons">

@@ -64,6 +64,7 @@
   width: 30%;
 }
 
+
 @media screen and (max-width: 481px) {
   .myEventInstanceObject {
     margin-left: 0%;

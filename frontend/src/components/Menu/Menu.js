@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 import "./Menu.css";
+import { getToken } from "../../authentication/auth";
 
 class MenuBar extends React.Component {
   /* Collapsible menu, code inspired from https://medium.com/@subalerts/implememting-a-simple-collapsible-component-in-react-js-67c796e64652 */
@@ -14,7 +16,28 @@ class MenuBar extends React.Component {
   }
 
   togglePanel(e) {
-    this.setState({ open: !this.state.open });
+    this.setState({ 
+      ...this.state,
+      open: !this.state.open 
+    });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  componentDidMount() {
+    // get my profle
+    axios.defaults.headers = {
+      Authorization: getToken()
+    }
+    axios.get('http://127.0.0.1:8000/api/myprofile/')
+      .then(response => {
+        this.setState({
+          ...this.state,
+          profile: response.data
+        })
+      })
   }
 
   render() {
@@ -56,7 +79,7 @@ class MenuBar extends React.Component {
           <button className="accountButton">
             <img
               className="profilePicture"
-              src={require("../../images/Pfp.jpg")}
+              src={this.state.profile && this.state.profile.profilePicture ? this.state.profile.profilePicture : require(`../../images/Logo.png`)}
               alt=""
             />
             <div className="accountButtonText">
@@ -71,6 +94,11 @@ class MenuBar extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link className="tabEntry" to="/followers">
+                  Followers
+                </Link>
+              </li>
+              <li>
                 <div className="horizontalMenuLine" />
               </li>
               <li>
@@ -82,8 +110,8 @@ class MenuBar extends React.Component {
                 <div className="horizontalMenuLine" />
               </li>
               <li>
-                <Link className="tabEntry" to="/followers">
-                  Followers
+                <Link className="tabEntry" onClick={this.logout} to="/">
+                  Logout
                 </Link>
               </li>
             </ul>

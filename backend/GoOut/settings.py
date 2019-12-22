@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+from corsheaders.defaults import default_headers
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    'events'
+    'events',
+    'users'
 ]
 
 SITE_ID = 1
@@ -136,14 +138,28 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'rest_framework.permissions.AllowAny'
+    ],
 }
 
 # Corse header settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'EventType',
+]
+
+# Authentication settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_USERNAME_REQUIRED = False

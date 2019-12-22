@@ -1,5 +1,8 @@
 import React from "react";
 import "./SignUp.css";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import { getToken } from "../../authentication/auth"
 
 const initialState = {
   firstName: "",
@@ -13,7 +16,8 @@ const initialState = {
   emailError: "",
   passwordError: "",
   confirmPasswordError: "",
-  birthDateError: ""
+  birthDateError: "",
+  signUpError: ""
 };
 
 class SignUpWindow extends React.Component {
@@ -21,7 +25,6 @@ class SignUpWindow extends React.Component {
 
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -84,6 +87,54 @@ class SignUpWindow extends React.Component {
     return true;
   };
 
+  // Send a post request to the server to register the user
+  authenticateSignUp(email, password1, password2, firstName, lastName, birthDate, gender, phoneNumber, location) {
+    axios.post("http://127.0.0.1:8000/rest-auth/registration/", {
+      username: email,
+      email: email,
+      password1: password1,
+      password2: password2
+    })
+    .then(result => {
+      const token = result.data.key;
+      localStorage.setItem('token', token);
+    })
+    .catch(error => {
+      this.setState({
+        ...this.state,
+        signUpError: "An account with these credentials couldn't be made"
+      })
+      return true
+    })
+    .then(ErrorHappened => {
+      if(!ErrorHappened) {
+        let user = {}
+        axios.defaults.headers = {
+          Authorization: getToken()
+        }
+        axios.get('http://127.0.0.1:8000/api/myuser/')
+          .then(response => {
+            user = response.data
+          })
+          .then(() => {
+            axios.post('http://127.0.0.1:8000/api/profiles/', {
+              user: user.id,
+              birthDate: birthDate, 
+              gender: gender,
+              phoneNumber: phoneNumber,
+              location: location,
+            })
+            axios.put('http://127.0.0.1:8000/api/myuser/', {
+              ...user,
+              first_name: firstName,
+              last_name: lastName
+            })
+            this.props.history.push("/home");
+          })
+      }
+    })
+  }
+
   /*Validate the form. Either display the correct error messages or send the data*/
   handleSubmit = event => {
     event.preventDefault();
@@ -91,8 +142,10 @@ class SignUpWindow extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      console.log(this.state);
-      this.setState(initialState);
+      this.authenticateSignUp(this.state.email, this.state.password, this.state.confirmPassword,
+        this.state.firstName, this.state.lastName,
+        event.target.elements.birthDate.value, event.target.elements.gender.value, 
+        event.target.elements.phoneNumber.value, event.target.elements.location.value);
     }
   };
 
@@ -157,12 +210,13 @@ class SignUpWindow extends React.Component {
               <b>Gender</b>
             </p>
           </div>
-          <div className="radiocontainer">
+          <div className="radiocontainer" id="gender">
             <input
               className="inputButton"
               id="male"
               name="gender"
               type="radio"
+              value="M"
               defaultChecked
             />
             <label className="male">Male</label>
@@ -171,6 +225,7 @@ class SignUpWindow extends React.Component {
               id="female"
               name="gender"
               type="radio"
+              value="F"
             />
             <label className="female">Female</label>
           </div>
@@ -184,6 +239,7 @@ class SignUpWindow extends React.Component {
             </p>
             <input type="text" id="phoneNumber" />
           </div>
+          <div className="error">{this.state.signUpError}</div>
         </div>
         <div className="signUpButton">
           <button className="sButton" type="submit">
@@ -195,4 +251,4 @@ class SignUpWindow extends React.Component {
   }
 }
 
-export default SignUpWindow;
+export default withRouter(SignUpWindow);

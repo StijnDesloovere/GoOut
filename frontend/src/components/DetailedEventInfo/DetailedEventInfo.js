@@ -8,7 +8,7 @@ class DetailedEventInfoComponent extends React.Component {
       <div className="eventInfoObject">
         <div className="eventInfoTopObject">
           <div className="detailedEventImage">
-            <img src={require(`../../images/${this.props.image}.jpg`)} alt="" />
+            <img src={this.props.image} alt="" />
           </div>
           <div className="detailedEventInfo">
             <div className="detailedEventInfoTitle">{this.props.title}</div>

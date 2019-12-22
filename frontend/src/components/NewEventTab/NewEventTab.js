@@ -1,6 +1,7 @@
 import React from "react";
 import "./NewEventTab.css";
 import axios from "axios";
+import { getToken } from "../../authentication/auth";
 
 const initialState = {
   eventName: "",
@@ -16,7 +17,6 @@ class NewEventBar extends React.Component {
 
   /* Update the state with the currect value*/
   handleInputChanges = event => {
-    console.log(this.state.password);
     this.setState({
       [event.target.id]: event.target.value
     });
@@ -55,24 +55,48 @@ class NewEventBar extends React.Component {
   /*Validate the form. Either display the correct error messages or send the data*/
   handleSubmit = event => {
     event.preventDefault();
+    event.persist();
 
     const valid = this.validate();
 
-    console.log(valid);
-    console.log(this.state.eventName);
-
     if (valid) {
-      // Send a post request to the server
-      axios.post('http://127.0.0.1:8000/api/events/', {
-        name: event.target.elements.eventName.value,
-        description: event.target.elements.description.value,
-        category: event.target.elements.eventCategory.value,
-        date: event.target.elements.date.value,
-        startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
-        endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
-        location: event.target.elements.eventLocation.value
-      })
-      this.setState(initialState);
+      let user = {}
+
+      axios.defaults.headers = {
+        Authorization: getToken()
+      }
+      axios.get('http://127.0.0.1:8000/api/myprofile/')
+        .then(response => {
+          user = response.data.user
+        })
+        .then(() => {
+          let formData = new FormData();
+          if(event.target.elements.image.files.length) { // if the user uploaded an image, add it to the form
+            formData.append("image", event.target.elements.image.files[0]);
+          }
+          let eventData = {
+            name: event.target.elements.eventName.value,
+            creator: user.id,
+            description: event.target.elements.description.value,
+            category: event.target.elements.eventCategory.value,
+            date: event.target.elements.date.value,
+            startTime: event.target.elements.startTimeHour.value + ":" + event.target.elements.startTimeMinute.value,
+            endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
+            location: event.target.elements.eventLocation.value
+          }
+          for(var propName in eventData) { // add all the data about the event to the form
+            formData.append(propName, eventData[propName])
+          }
+          // Send a post request to the server
+          axios.post('http://127.0.0.1:8000/api/events/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })})
+        .then(() => {
+          this.props.onEventCreation();
+          super.setState(initialState);
+        })
     }
   };
 
@@ -120,9 +144,10 @@ class NewEventBar extends React.Component {
                     <b>Event category</b>
                   </p>
                   <select id="eventCategory">
-                    <option value="PA" selected="">Party</option>
+                    <option value="PA" defaultValue="">Party</option>
                     <option value="CO">Concert</option>
                     <option value="CF">Conference</option>
+                    <option value="FF">Food Festival</option>
                     <option value="CM">Competition</option>
                     <option value="MU">Meetup</option>
                     <option value="SE">Sporting Event</option>
@@ -141,7 +166,7 @@ class NewEventBar extends React.Component {
                     <b>Date</b>
                   </p>
                   <input
-                    type="Date"
+                    type="date"
                     id="date"
                     value={this.state.date || ""}
                     onChange={this.handleInputChanges}
@@ -152,7 +177,7 @@ class NewEventBar extends React.Component {
                   <p>
                     <b>Image</b>
                   </p>
-                  <input type="file"></input>
+                  <input type="file" id="image"></input>
                 </div>
               </div>
               <div className="thirdRow">

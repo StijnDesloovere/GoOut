@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: -100px;
 }
 
 .profilePictureIcon {
@@ -24,7 +23,6 @@
 }
 
 .newProfilePicture {
-  margin-left: -100px;
   margin-bottom: 30px;
 }
 
