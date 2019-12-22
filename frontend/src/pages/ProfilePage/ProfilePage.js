@@ -78,6 +78,7 @@ class ProfilePage extends React.Component {
           profile: response.data
         })
       })
+    //get all the events
     this.getEvents();
   }
 
@@ -95,7 +96,7 @@ class ProfilePage extends React.Component {
         <MenuBar />
         <Profile
           name={typeof this.state.profile !== 'undefined' ? this.state.profile.user.first_name + " " + this.state.profile.user.last_name : ""}
-          image="Logo.png"
+          image={this.state.profile && this.state.profile.profilePicture ? this.state.profile.profilePicture : require(`../../images/Logo.png`)}
           followers={0}
           following={typeof this.state.profile !== 'undefined' ? this.state.profile.following.length : 0}
         />

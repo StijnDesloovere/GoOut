@@ -9,7 +9,7 @@ class Profile extends React.Component {
       <div className="profileObject">
         <div className="PFheader">
           <div className="PFpicture">
-            <img src={require(`../../images/${this.props.image}`)} alt="" />
+            <img src={this.props.image} alt="" />
           </div>
           <div className="PFheaderInfo">
             <div className="PFname">

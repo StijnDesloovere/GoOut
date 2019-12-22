@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
@@ -29,11 +30,12 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfile.objects.all()
 
 
-class MyProfileView(APIView):
+class MyProfileView(RetrieveAPIView):
+    serializer_class = UserProfileSerializer
     queryset = User.objects.all()
 
-    def get(self, request):
-        user = Token.objects.get(key=request.headers['Authorization']).user
+    def get_object(self):
+        user = Token.objects.get(
+            key=self.request.headers['Authorization']).user
         userProfile = UserProfile.objects.get(user=user.id)
-        serializedUser = UserProfileSerializer(userProfile)
-        return Response(serializedUser.data)
+        return userProfile

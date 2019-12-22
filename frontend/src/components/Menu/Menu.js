@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 import "./Menu.css";
+import { getToken } from "../../authentication/auth";
 
 class MenuBar extends React.Component {
   /* Collapsible menu, code inspired from https://medium.com/@subalerts/implememting-a-simple-collapsible-component-in-react-js-67c796e64652 */
@@ -14,11 +16,28 @@ class MenuBar extends React.Component {
   }
 
   togglePanel(e) {
-    this.setState({ open: !this.state.open });
+    this.setState({ 
+      ...this.state,
+      open: !this.state.open 
+    });
   }
 
   logout() {
     localStorage.removeItem('token');
+  }
+
+  componentDidMount() {
+    // get my profle
+    axios.defaults.headers = {
+      Authorization: getToken()
+    }
+    axios.get('http://127.0.0.1:8000/api/myprofile/')
+      .then(response => {
+        this.setState({
+          ...this.state,
+          profile: response.data
+        })
+      })
   }
 
   render() {
@@ -60,7 +79,7 @@ class MenuBar extends React.Component {
           <button className="accountButton">
             <img
               className="profilePicture"
-              src={require("../../images/Logo.png")}
+              src={this.state.profile && this.state.profile.profilePicture ? this.state.profile.profilePicture : require(`../../images/Logo.png`)}
               alt=""
             />
             <div className="accountButtonText">
