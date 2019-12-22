@@ -82,11 +82,24 @@ class Account extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      axios.patch(`http://127.0.0.1:8000/api/profiles/${this.state.id}/`, {
-        birthDate: this.state.birthDate, 
+      let formData = new FormData();
+      if (event.target.elements.image.files.length) { // if the user uploaded an image, add the image to the form which has to be sent
+        formData.append("profilePicture", event.target.elements.image.files[0]);
+      }
+      let profileFields = {
+        birthDate: this.state.birthDate,
         gender: this.state.gender,
         phoneNumber: this.state.phoneNumber,
         location: this.state.location,
+      }
+      for (var propName in profileFields) { // add all the profile data to the form
+        formData.append(propName, profileFields[propName])
+      }
+      // send the data to the backend
+      axios.patch(`http://127.0.0.1:8000/api/profiles/${this.state.id}/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       })
       axios.patch('http://127.0.0.1:8000/api/myuser/', {
         first_name: this.state.firstName,
@@ -98,23 +111,21 @@ class Account extends React.Component {
   render() {
     return (
       <div className="accountPage">
-        <div className="changeProfilePicture">
-          <div className="profilePictureTitle">
-            <img
-              className="profilePictureIcon"
-              src={require("../../images/profilePictureIcon.png")}
-              alt=""
-            />
-            <p className="profilePictureTitleText">
-              Change your profile picture
-            </p>
-          </div>
-          <form>
-            <input className="newProfilePicture" type="file" />
-          </form>
-        </div>
         <div className="settingsForm">
           <form onSubmit={this.handleSubmit}>
+            <div className="changeProfilePicture">
+              <div className="profilePictureTitle">
+                <img
+                  className="profilePictureIcon"
+                  src={require("../../images/profilePictureIcon.png")}
+                  alt=""
+                />
+                <p className="profilePictureTitleText">
+                  Change your profile picture
+                </p>
+              </div>
+              <input className="newProfilePicture" id="image" type="file" />
+            </div>
             <div className="userSettings">
               <img
                 className="settingsIcon"
@@ -169,23 +180,27 @@ class Account extends React.Component {
                   name="gender"
                   type="radio"
                   value="M"
-                  onClick={()=>{this.setState({
-                    ...this.state,
-                    gender: "M"
-                  })}}
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      gender: "M"
+                    })
+                  }}
                   checked={this.state.gender === "M" ? true : false}
                 />
                 <label className="male">Male</label>
-                <input 
+                <input
                   className="inputButtons"
                   id="female"
                   name="gender"
                   type="radio"
                   value="F"
-                  onClick={()=>{this.setState({
-                    ...this.state,
-                    gender: "F"
-                  })}}
+                  onClick={() => {
+                    this.setState({
+                      ...this.state,
+                      gender: "F"
+                    })
+                  }}
                   checked={this.state.gender === "F" ? true : false}
                 />
                 <label className="female">Female</label>
@@ -194,17 +209,17 @@ class Account extends React.Component {
                 <p className="location">
                   <b>Location</b>
                 </p>
-                <input 
-                  type="text" 
-                  id="location" 
+                <input
+                  type="text"
+                  id="location"
                   onChange={this.handleInputChanges}
                   value={this.state.location}
                 />
                 <p className="phoneNumber">
                   <b>Phone number</b>
                 </p>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="phoneNumber"
                   onChange={this.handleInputChanges}
                   value={this.state.phoneNumber}

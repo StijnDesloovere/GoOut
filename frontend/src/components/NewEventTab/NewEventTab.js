@@ -71,7 +71,7 @@ class NewEventBar extends React.Component {
         })
         .then(() => {
           let formData = new FormData();
-          if(event.target.elements.image.files.length) {
+          if(event.target.elements.image.files.length) { // if the user uploaded an image, add it to the form
             formData.append("image", event.target.elements.image.files[0]);
           }
           let eventData = {
@@ -84,7 +84,7 @@ class NewEventBar extends React.Component {
             endTime: event.target.elements.endTimeHour.value + ":" + event.target.elements.endTimeMinute.value,
             location: event.target.elements.eventLocation.value
           }
-          for(var propName in eventData){
+          for(var propName in eventData) { // add all the data about the event to the form
             formData.append(propName, eventData[propName])
           }
           // Send a post request to the server

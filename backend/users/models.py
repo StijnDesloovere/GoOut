@@ -17,5 +17,8 @@ class UserProfile(models.Model):
     following = models.ManyToManyField(
         "self", related_name='followers', blank=True)
 
+    profilePicture = models.ImageField(
+        upload_to='pictures/', blank=True, null=True)
+
     def __str__(self):
         return self.user.email
