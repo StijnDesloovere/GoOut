@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, serializers
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateAPIView, RetrieveAPIView
 from rest_framework.response import Response
@@ -44,3 +44,34 @@ class MyProfileView(RetrieveUpdateAPIView,):
             key=self.request.headers['Authorization']).user
         userProfile = UserProfile.objects.get(user=user.id)
         return userProfile
+
+
+class FollowerView(APIView):
+    queryset = UserProfile.objects.all()
+
+    def get(self, request, type):
+        user = Token.objects.get(
+            key=self.request.headers['Authorization']).user
+        userProfile = UserProfile.objects.get(user=user.id)
+
+        if(type == 'followers'):
+            followers = UserProfile.objects.filter(
+                following__id=userProfile.id)
+            return Response(UserProfileSerializer(followers, many=True).data)
+        elif(type == 'following'):
+            following = UserProfile.objects.filter(
+                followers__id=userProfile.id)
+            return Response(UserProfileSerializer(following, many=True).data)
+        elif(type == 'non-following'):
+            following = UserProfile.objects.filter(
+                followers__id=userProfile.id)
+            nonFollowing = UserProfile.objects.all().difference(following)
+            return Response(UserProfileSerializer(nonFollowing, many=True).data)
+        else:
+            raise serializers.ValidationError(
+                'Unsupported type parameter (expected "followers", "following" or "non-following")')
+
+    def post(self, request, type):
+        user = Token.objects.get(
+            key=self.request.headers['Authorization']).user
+        userProfile = UserProfile.objects.get(user=user.id)

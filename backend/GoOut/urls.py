@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^api/user/(?P<pk>\d+)/$', userViews.UserView.as_view()),
     path('api/profiles/', include('users.api.urls')),
     path('api/myprofile/', userViews.MyProfileView.as_view()),
+    url(r'^api/follow/(?P<type>[\w]+)/$', userViews.FollowerView.as_view()),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

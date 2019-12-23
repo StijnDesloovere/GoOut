@@ -6,11 +6,11 @@ class FollowersComponent extends React.Component {
     return (
       <div className="followerComponent">
         <div className="followerPFP">
-          <img src={require(`../../images/${this.props.image}.jpg`)} alt="" />
+          <img src={this.props.image} alt="" />
         </div>
         <div className="followerName">
           <p>
-            <b>{this.props.name}</b>
+            <b>{this.props.firstName + " " + this.props.lastName}</b>
           </p>
         </div>
       </div>
