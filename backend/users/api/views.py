@@ -62,16 +62,31 @@ class FollowerView(APIView):
             following = UserProfile.objects.filter(
                 followers__id=userProfile.id)
             return Response(UserProfileSerializer(following, many=True).data)
-        elif(type == 'non-following'):
+        elif(type == 'not_following'):
             following = UserProfile.objects.filter(
                 followers__id=userProfile.id)
             nonFollowing = UserProfile.objects.all().difference(following)
             return Response(UserProfileSerializer(nonFollowing, many=True).data)
         else:
             raise serializers.ValidationError(
-                'Unsupported type parameter (expected "followers", "following" or "non-following")')
+                'Unsupported type parameter (expected "followers", "following" or "not_following")')
 
     def post(self, request, type):
         user = Token.objects.get(
             key=self.request.headers['Authorization']).user
         userProfile = UserProfile.objects.get(user=user.id)
+        if(userProfile):
+            if(type == 'add_following'):
+                userProfile.following.add(
+                    UserProfile.objects.get(id=request.data['id']))
+                return Response(UserProfileSerializer(userProfile).data)
+            elif(type == 'remove_following'):
+                userProfile.following.remove(
+                    UserProfile.objects.get(id=request.data['id']))
+                return Response(UserProfileSerializer(userProfile).data)
+            else:
+                raise serializers.ValidationError(
+                    'Unsupported type parameter (expected "add_following" or "remove_following")')
+        else:
+            raise serializers.ValidationError(
+                'Please provide an id of an existing user profile')

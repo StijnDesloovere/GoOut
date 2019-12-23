@@ -17,9 +17,24 @@
   border-radius: 50%;
 }
 
+.followerName {
+  width: 360px;
+}
+
 .followerName p {
   margin-left: 10px;
   font-size: 20px;
+}
+
+.unFollowButton {
+  border: 0px;
+  border-radius: 30px;
+  background-color: whitesmoke;
+}
+
+.unFollowImage {
+  height: 30px;
+  width: 30px;
 }
 
 @media screen and (max-width: 1024px) {
