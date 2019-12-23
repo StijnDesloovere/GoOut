@@ -39,7 +39,9 @@ class MyEventsView(ListAPIView):
             going = userProfile.going.all()
             interested = userProfile.interested.all()
             created = userProfile.eventsCreated.all()
-            return going.union(interested, created)
+            following = Event.objects.filter(
+                creator__followers__id=userProfile.id)
+            return going.union(interested, created, following)
 
         user = Token.objects.get(
             key=self.request.headers['Authorization']).user
