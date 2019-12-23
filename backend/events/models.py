@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import UserProfile
 import datetime
 
 
@@ -27,7 +27,7 @@ class Event(models.Model):
         max_length=2, choices=CATEGORY_CHOICES, default="OT")
 
     creator = models.ForeignKey(
-        User, on_delete=models.CASCADE, default=1, related_name='eventsCreated')
+        UserProfile, on_delete=models.CASCADE, default=1, related_name='eventsCreated')
 
     date = models.DateField(default=datetime.date.today)
     startTime = models.TimeField(default=datetime.time)
@@ -39,9 +39,10 @@ class Event(models.Model):
     long = models.DecimalField(
         max_digits=15, decimal_places=11, blank=True, null=True)
 
-    going = models.ManyToManyField(User, related_name='going', blank=True)
+    going = models.ManyToManyField(
+        UserProfile, related_name='going', blank=True)
     interested = models.ManyToManyField(
-        User, related_name='interested', blank=True)
+        UserProfile, related_name='interested', blank=True)
 
     image = models.ImageField(upload_to='pictures/', blank=True, null=True)
 

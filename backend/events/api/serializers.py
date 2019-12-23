@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
 from events.models import Event
-from users.api.serializers import UserSerializer
+from users.api.serializers import UserProfileSerializer
 
 
 class EventSerializer(serializers.ModelSerializer):
-    creator = UserSerializer()
+    creator = UserProfileSerializer()
 
     class Meta:
         model = Event

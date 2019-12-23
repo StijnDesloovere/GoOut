@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     location = models.CharField(max_length=255)
 
     following = models.ManyToManyField(
-        "self", related_name='followers', blank=True)
+        "self", related_name='followers', symmetrical=False, blank=True)
 
     profilePicture = models.ImageField(
         upload_to='pictures/', blank=True, null=True)

@@ -1,8 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import "./DetailedEventInfo.css";
+import { getToken } from "../../authentication/auth";
 
 class DetailedEventInfoComponent extends React.Component {
+  state = {
+    interested: [],
+    going: []
+  }
+
+  componentDidMount() {
+    this.setState({
+      interested: this.props.peopleInterested,
+      going: this.props.peopleGoing
+    })
+  }
+
   render() {
     return (
       <div className="eventInfoObject">
@@ -40,30 +54,87 @@ class DetailedEventInfoComponent extends React.Component {
         <div className="eventInfoBottomObject">
           <p className="DEdescription">{this.props.description}</p>
           <div className="DEbuttons">
-            <button>
+            <button
+              onClick={() => {
+                axios.defaults.headers = {
+                  Authorization: getToken()
+                }
+                if(this.state.going.indexOf(this.props.userID) === -1) { // if user is not going, add them to 'going'
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'going',
+                    eventID: this.props.id
+                  })
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'remove-interested',
+                    eventID: this.props.id
+                  })
+                  this.setState( {
+                    going: this.state.going.indexOf(this.props.userID) === -1 ? this.state.going.concat(this.props.userID) : this.state.going,
+                    interested: this.state.interested.filter((id) => { return id !== this.props.userID })
+                  })
+                } else { // if user is going and clicks the button, remove them from 'going'
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'remove-going',
+                    eventID: this.props.id
+                  })
+                  this.setState({
+                    ...this.state,
+                    going: this.state.going.filter((id) => { return id !== this.props.userID })
+                  })
+                }
+              }}
+            >
               <img
                 className="DEgoingImage"
-                src={require("../../images/going.png")}
+                src={require(this.state.going.indexOf(this.props.userID) === -1 ? "../../images/going.png" : "../../images/going_active.png")}
                 alt=""
+                
               />
               <b>Going</b>
             </button>
-            <button>
+            <button
+              onClick={() => {
+                axios.defaults.headers = {
+                  Authorization: getToken()
+                }
+                if(this.state.interested.indexOf(this.props.userID) === -1) { // if user is not interested, add them to 'interested'
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'interested',
+                    eventID: this.props.id
+                  })
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'remove-going',
+                    eventID: this.props.id
+                  })
+                  this.setState( {
+                    interested: this.state.interested.indexOf(this.props.userID) === -1 ? this.state.interested.concat(this.props.userID) : this.state.interested,
+                    going: this.state.going.filter((id) => { return id !== this.props.userID })
+                  })
+                } else { // if the user is already interested, remove them from 'interested'
+                  axios.post('http://127.0.0.1:8000/api/interested-going/', {
+                    type: 'remove-interested',
+                    eventID: this.props.id
+                  })
+                  this.setState({
+                    ...this.state,
+                    interested: this.state.interested.filter((id) => { return id !== this.props.userID })
+                  })
+                }
+              }}
+            >
               <img
                 className="DEinterestedImage"
-                src={require("../../images/interested.png")}
+                src={require(this.state.interested.indexOf(this.props.userID) === -1 ? "../../images/interested.png" : "../../images/interested_active.png")}
                 alt=""
               />
               <b>Interested</b>
             </button>
           </div>
           <p className="DEpeopleGoing">
-            - <b>{this.props.peopleGoing} People</b> are going including{" "}
-            <b>{this.props.friendsGoing} friends</b>
+            - <b> {this.state.going.length} </b> {this.state.going.length === 1 ? " Person is" : " People are"} going
           </p>
           <p className="DEpeopleInterested">
-            - <b>{this.props.peopleInterested} People</b> are interested
-            including <b>{this.props.friendsInterested} friends</b>
+            - <b> {this.state.interested.length} </b> {this.state.interested.length === 1 ? " Person is" : " People are"} interested
           </p>
         </div>
       </div>
@@ -82,8 +153,8 @@ DetailedEventInfoComponent.propTypes = {
   description: PropTypes.string,
   friendsGoing: PropTypes.number,
   friendsInterested: PropTypes.number,
-  peopleGoing: PropTypes.number,
-  peopleInterested: PropTypes.number
+  peopleGoing: PropTypes.array,
+  peopleInterested: PropTypes.array
 };
 
 export default DetailedEventInfoComponent;

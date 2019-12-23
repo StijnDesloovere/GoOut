@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios"
+import axios from "axios";
 
 import EventComponent from "../components/EventInfo/EventInfo";
 import { getToken } from "../authentication/auth";
@@ -20,9 +20,17 @@ class Home extends React.Component {
     axios.get('http://127.0.0.1:8000/api/myevents/')
       .then(response => {
         this.setState({
+          ...this.state,
           events: response.data
         })
       })
+      axios.get('http://127.0.0.1:8000/api/myprofile/')
+        .then(response => {
+          this.setState({
+            ...this.state,
+            profile: response.data
+          })
+        })
   }
 
   componentDidMount() {
@@ -34,16 +42,17 @@ class Home extends React.Component {
     return (
       <div>
         <MenuBar />
-        <NewEventBar 
+        <NewEventBar
           onEventCreation={this.getEvents.bind(this)}
         />
-        
+
         {this.state.events.map((data, i) => (
           <EventComponent
             key={i}
             id={data.id}
+            userID={this.state.profile.id}
             title={data.name}
-            creator={data.creator.first_name + " " + data.creator.last_name}
+            creator={data.creator.user.first_name + " " + data.creator.user.last_name}
             eventType={data.category}
             image={data.image ? data.image : require(`../images/Logo.png`)}
             location={data.location}
@@ -51,8 +60,8 @@ class Home extends React.Component {
             startTime={data.startTime}
             endTime={data.endTime}
             description={data.description}
-            friendsGoing={5}
-            friendsInterested={5}
+            going={data.going}
+            interested={data.interested}
           />
         ))}
       </div>

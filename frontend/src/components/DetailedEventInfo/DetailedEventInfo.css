@@ -96,12 +96,10 @@
 .DEgoingImage {
   width: 20px;
   margin-right: 5px;
-  filter: invert(50%);
 }
 .DEinterestedImage {
   width: 19px;
   margin-right: 5px;
-  filter: invert(50%);
 }
 
 /*people going/interested*/
