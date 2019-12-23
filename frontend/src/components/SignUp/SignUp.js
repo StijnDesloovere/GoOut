@@ -153,7 +153,7 @@ class SignUpWindow extends React.Component {
     return (
       <form className="signUpForm" onSubmit={this.handleSubmit}>
         <div className="formFields">
-          <header className="header">Create your account</header>
+          <div className="header">Create your account</div>
           <div className="signUpFields">
             <p className="firstName">
               <b>First name*</b>

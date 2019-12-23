@@ -60,14 +60,14 @@ class NewEventBar extends React.Component {
     const valid = this.validate();
 
     if (valid) {
-      let user = {}
+      let profile = {}
 
       axios.defaults.headers = {
         Authorization: getToken()
       }
       axios.get('http://127.0.0.1:8000/api/myprofile/')
         .then(response => {
-          user = response.data.user
+          profile = response.data
         })
         .then(() => {
           let formData = new FormData();
@@ -76,7 +76,7 @@ class NewEventBar extends React.Component {
           }
           let eventData = {
             name: event.target.elements.eventName.value,
-            creator: user.id,
+            creator: profile.id,
             description: event.target.elements.description.value,
             category: event.target.elements.eventCategory.value,
             date: event.target.elements.date.value,
