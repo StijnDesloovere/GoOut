@@ -3,6 +3,18 @@
   flex-direction: column;
 }
 
+.searchBox {
+  padding-top: 70px;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.searchBox header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .followersPageObject {
   margin-top: 65px;
   display: flex;

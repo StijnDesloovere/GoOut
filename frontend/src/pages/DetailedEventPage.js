@@ -1,7 +1,7 @@
 import React from "react";
 import MenuBar from "../components/Menu/Menu";
 import DetailedEventInfoComponent from "../components/DetailedEventInfo/DetailedEventInfo";
-import EVENTTYPE_CHOICES from "../components/EventInfo/EventCategories"
+import EVENTTYPE_CHOICES from "../components/EventInfo/EventCategories";
 import axios from "axios";
 
 class DetailedEvent extends React.Component {
@@ -67,6 +67,7 @@ class DetailedEvent extends React.Component {
           />
           : ""
         }
+
       </div>
     );
   }
